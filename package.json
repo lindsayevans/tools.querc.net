@@ -1,0 +1,28 @@
+{
+  "name": "tools.querc.net",
+  "version": "1.0.0",
+  "description": "",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "NODE_ENV=production parcel build src/index.html"
+  },
+  "staticFiles": {
+    "staticPath": "static",
+    "watcherGlob": "**"
+  },
+  "keywords": [],
+  "author": "Lindsay Evans <linz@linz.id.au>",
+  "license": "MIT",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.12.0",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "parcel": "^2.12.0",
+    "parcel-reporter-static-files-copy": "^1.5.3"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
