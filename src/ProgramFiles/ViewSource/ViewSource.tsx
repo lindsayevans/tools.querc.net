@@ -7,6 +7,7 @@ export const ViewSource = () => {
   const [url, setUrl] = useState<string>('https://boomworks.com.au/');
 
   const viewSource = () => {
+    // Doesn't work :(
     window.open(`view-source:${url}`, '_blank');
   };
 
@@ -34,11 +35,6 @@ export const ViewSource = () => {
             View source
           </button>
         </div>
-        <p>
-          <a href={`view-source:${url}`} target="_blank">
-            View source
-          </a>
-        </p>
       </Application>
     </>
   );

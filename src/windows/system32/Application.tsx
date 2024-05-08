@@ -37,15 +37,14 @@ export const Application: React.FC<PropsWithChildren<ApplicationProps>> = (
   const [isMaximised, setIsMaximised] = useState(false);
   const [isMinimised, setIsMinimised] = useState(false);
   const [isFocused, setIsFocused] = useState(true);
+  const [stackingOrder, setStackingOrder] = useState(1);
 
   return (
     <div className="application-wrapper">
-      <Draggable>
-        <div className="app-icon" onClick={() => setIsOpen(true)}>
-          <img src={iconSrc} />
-          <span className="app-icon__title">{iconTitle}</span>
-        </div>
-      </Draggable>
+      <div className="app-icon" onClick={() => setIsOpen(true)}>
+        <img src={iconSrc} />
+        <span className="app-icon__title">{iconTitle}</span>
+      </div>
       <Draggable
         disabled={!draggable}
         allowAnyClick
@@ -66,6 +65,7 @@ export const Application: React.FC<PropsWithChildren<ApplicationProps>> = (
           resizeHandles={
             resizable ? ['sw', 'se', 'nw', 'ne', 'w', 'e', 'n', 's'] : []
           }
+          style={{ zIndex: stackingOrder }}
         >
           <div
             className={classList([
@@ -77,6 +77,7 @@ export const Application: React.FC<PropsWithChildren<ApplicationProps>> = (
             <div
               className="title-bar"
               onDoubleClick={() => setIsMaximised(!isMaximised)}
+              onMouseDown={() => setStackingOrder(stackingOrder + 1)}
             >
               <div className="title-bar-text">{title}</div>
               <div className="title-bar-controls">
