@@ -7,9 +7,12 @@ body {
 
 body {
   font-family: sans-serif;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
   color: #000;
   background: #5ed3f6 url(/static/wallpaper/default.jpg) 50% 50%;
+}
+
+#app {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
 }

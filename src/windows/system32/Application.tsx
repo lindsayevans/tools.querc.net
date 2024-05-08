@@ -15,6 +15,7 @@ export type ApplicationProps = {
   width?: number;
   height?: number;
   draggable?: boolean;
+  resizable?: boolean;
 };
 
 export const Application: React.FC<PropsWithChildren<ApplicationProps>> = (
@@ -29,6 +30,7 @@ export const Application: React.FC<PropsWithChildren<ApplicationProps>> = (
     width = 300,
     height = 300,
     draggable = true,
+    resizable = true,
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -37,9 +39,9 @@ export const Application: React.FC<PropsWithChildren<ApplicationProps>> = (
   const [isFocused, setIsFocused] = useState(true);
 
   return (
-    <>
+    <div className="application-wrapper">
       <Draggable>
-        <div className="app-icon" onDoubleClick={() => setIsOpen(true)}>
+        <div className="app-icon" onClick={() => setIsOpen(true)}>
           <img src={iconSrc} />
           <span className="app-icon__title">{iconTitle}</span>
         </div>
@@ -61,7 +63,9 @@ export const Application: React.FC<PropsWithChildren<ApplicationProps>> = (
           height={height}
           minConstraints={[200, 100]}
           maxConstraints={[1000, 1000]}
-          resizeHandles={['sw', 'se', 'nw', 'ne', 'w', 'e', 'n', 's']}
+          resizeHandles={
+            resizable ? ['sw', 'se', 'nw', 'ne', 'w', 'e', 'n', 's'] : []
+          }
         >
           <div
             className={classList([
@@ -106,10 +110,10 @@ export const Application: React.FC<PropsWithChildren<ApplicationProps>> = (
                 ></button>
               </div>
             </div>
-            <div className="window-body">{children}</div>
+            <div className="window-body  has-scrollbar">{children}</div>
           </div>
         </ResizableBox>
       </Draggable>
-    </>
+    </div>
   );
 };
