@@ -17,6 +17,10 @@
   &__title {
     pointer-events: none;
     text-shadow: 0 0 4px #fff;
+    max-width: 64px;
+    text-align: center;
+    inline-size: 64px;
+    overflow-wrap: break-word;
   }
 }
 
