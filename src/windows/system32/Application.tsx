@@ -12,6 +12,8 @@ export type ApplicationProps = {
   title: string;
   iconSrc?: string;
   iconTitle?: string;
+  width?: number;
+  height?: number;
   draggable?: boolean;
 };
 
@@ -24,6 +26,8 @@ export const Application: React.FC<PropsWithChildren<ApplicationProps>> = (
     title,
     iconSrc = '/icons/exe.ico',
     iconTitle = executableName,
+    width = 300,
+    height = 300,
     draggable = true,
   } = props;
 
@@ -53,8 +57,8 @@ export const Application: React.FC<PropsWithChildren<ApplicationProps>> = (
             isMinimised ? 'minimised' : undefined,
             isMaximised ? 'maximised' : undefined,
           ])}
-          width={300}
-          height={200}
+          width={width}
+          height={height}
           minConstraints={[200, 100]}
           maxConstraints={[1000, 1000]}
           resizeHandles={['sw', 'se', 'nw', 'ne', 'w', 'e', 'n', 's']}

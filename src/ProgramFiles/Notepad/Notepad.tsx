@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Application } from '../windows/system32';
+import { Application } from '../../windows/system32';
 
 import './Notepad.scss';
-import { classList } from '../components/classList';
+import { classList } from '../../components/classList';
 
 export const Notepad = () => {
   const [wordWrap, setWordWrap] = useState(true);
