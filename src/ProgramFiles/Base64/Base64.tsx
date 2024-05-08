@@ -36,6 +36,7 @@ export const Base64 = () => {
               className={classList(['base64__textarea has-scrollbar'])}
               value={plaintext}
               onChange={(e) => setPlaintext(e.target.value)}
+              onFocus={(e) => e.target.select()}
             ></textarea>
           </div>
           <div className="buttons">
@@ -53,6 +54,7 @@ export const Base64 = () => {
               className={classList(['base64__textarea has-scrollbar'])}
               value={encoded}
               onChange={(e) => setEncoded(e.target.value)}
+              onFocus={(e) => e.target.select()}
             ></textarea>
           </div>
         </div>
