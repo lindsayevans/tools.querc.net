@@ -1,0 +1,10 @@
+.form {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 16px;
+
+  .field-row-stacked {
+    flex-grow: 1;
+  }
+}
