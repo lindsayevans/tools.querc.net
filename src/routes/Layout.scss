@@ -54,8 +54,15 @@ header {
       padding: 0;
     }
 
+    li {
+      display: flex;
+      align-items: stretch;
+    }
+
     a {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 1rem;
 
       @media (min-width: 1024px) {
