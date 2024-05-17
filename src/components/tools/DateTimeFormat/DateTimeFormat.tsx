@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BCP_47 } from './BCP_47';
 
 import './DateTimeFormat.scss';
+import { classList } from '../../classList';
 
 type DateTimeFormatParams = {
   locale: string;
@@ -63,6 +64,7 @@ export const DateTimeFormat = () => {
       .filter((x) => !Object.keys(defaultParams.options).includes(x))
       .sort()
   );
+  const [copied, setCopied] = useState(false);
 
   const formatDate = (date: Date) => {
     const formattedDate = new Intl.DateTimeFormat(
@@ -105,6 +107,10 @@ ${Object.keys(parameters.options)
   .join('\r\n')}
 }).format(new Date())`;
     navigator.clipboard.writeText(code);
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 3000);
   };
 
   useEffect(() => {
@@ -129,7 +135,10 @@ ${Object.keys(parameters.options)
         <div className="input">
           <button
             type="button"
-            className="copy-button"
+            className={classList([
+              'copy-button',
+              copied ? 'copied' : undefined,
+            ])}
             onClick={() => copyCode()}
           >
             Copy code

@@ -137,6 +137,12 @@
     top: -1rem;
     right: 1rem;
 
+    &.copied::before {
+      content: '✅';
+      position: absolute;
+      right: -1.5rem;
+    }
+
     @media (min-width: 1024px) {
       top: 1rem;
     }
