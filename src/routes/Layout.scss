@@ -22,6 +22,12 @@ header {
 
   h1 {
     margin: 0;
+
+    a:link,
+    a:visited {
+      text-decoration: none;
+      color: #333;
+    }
   }
 
   nav ul {
