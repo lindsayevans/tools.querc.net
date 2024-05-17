@@ -21,6 +21,10 @@ const router = createBrowserRouter([
         lazy: () => import('./routes/Base64Route'),
       },
       {
+        path: 'csv-json-converter',
+        lazy: () => import('./routes/CsvJsonConverterRoute'),
+      },
+      {
         path: 'date-time-format-playground',
         lazy: () => import('./routes/DateTimeFormatRoute'),
       },

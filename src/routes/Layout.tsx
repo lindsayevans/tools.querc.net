@@ -13,6 +13,10 @@ export const Layout = () => {
       text: 'Base64 converter',
     },
     {
+      url: 'csv-json-converter',
+      text: 'CSV ⇄ JSON converter',
+    },
+    {
       url: 'date-time-format-playground',
       text: 'DateTimeFormat playground',
     },
