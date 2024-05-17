@@ -22,30 +22,32 @@ export const Base64 = () => {
   return (
     <>
       <div className="converters">
-        <div className="field-row-stacked">
+        <div className="field-group">
           <label htmlFor="plaintext">Plaintext</label>
           <textarea
             id="plaintext"
-            className={classList(['base64__textarea has-scrollbar'])}
+            className="textarea"
             value={plaintext}
+            rows={15}
             onChange={(e) => setPlaintext(e.target.value)}
             onFocus={(e) => e.target.select()}
           ></textarea>
         </div>
         <div className="buttons">
           <button type="button" onClick={() => convertTo()}>
-            &raquo;
+            Encode&nbsp;&raquo;
           </button>
           <button type="button" onClick={() => convertFrom()}>
-            &laquo;
+            &laquo;&nbsp;Decode
           </button>
         </div>
-        <div className="field-row-stacked">
+        <div className="field-group">
           <label htmlFor="encoded">Encoded</label>
           <textarea
             id="encoded"
-            className={classList(['base64__textarea has-scrollbar'])}
+            className="textarea"
             value={encoded}
+            rows={15}
             onChange={(e) => setEncoded(e.target.value)}
             onFocus={(e) => e.target.select()}
           ></textarea>

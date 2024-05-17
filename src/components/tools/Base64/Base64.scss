@@ -1,14 +1,14 @@
 .converters {
   display: flex;
   align-items: center;
-  gap: 16px;
-  width: calc(100% - 32px);
-  height: calc(100% - 32px);
-  margin: 16px;
+  gap: 1rem;
 
-  .field-row-stacked {
+  .field-group {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
   }
 
   .buttons {
@@ -16,22 +16,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: stretch;
-    gap: 16px;
-
-    button {
-      width: 24px;
-      height: 24px;
-    }
+    gap: 1rem;
   }
 }
 
-.base64__textarea {
-  min-width: calc(50% - 32px - 24px);
+.textarea {
+  min-width: calc(50% - 4rem);
+  width: 100%;
   height: 100%;
   overflow: auto;
   resize: none;
   font-family: monospace;
-  font-size: 12px;
+  font-size: 1rem;
   white-space: nowrap;
   cursor: auto;
 }
