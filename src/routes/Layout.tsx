@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 
 import './Layout.scss';
 
@@ -13,10 +13,24 @@ export const Layout = () => {
         <nav>
           <ul>
             <li>
-              <Link to={`/base-64`}>Base64 converter</Link>
+              <NavLink
+                to={`/base-64`}
+                className={({ isActive, isPending }) =>
+                  isActive ? 'active' : isPending ? 'pending' : ''
+                }
+              >
+                Base64 converter
+              </NavLink>
             </li>
             <li>
-              <Link to={`/date-time-format`}>DateTimeFormat playground</Link>
+              <NavLink
+                to={`/date-time-format`}
+                className={({ isActive, isPending }) =>
+                  isActive ? 'active' : isPending ? 'pending' : ''
+                }
+              >
+                DateTimeFormat playground
+              </NavLink>
             </li>
           </ul>
         </nav>

@@ -27,9 +27,16 @@ header {
   nav ul {
     display: flex;
     align-items: flex-start;
-    gap: 1rem;
     margin: 0;
     padding: 0;
     list-style-type: none;
+
+    a {
+      display: block;
+      padding: 0.5rem 1rem;
+      &.active {
+        background-color: yellowgreen;
+      }
+    }
   }
 }
