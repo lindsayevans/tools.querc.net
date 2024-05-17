@@ -20,6 +20,10 @@ a:active {
   color: rebeccapurple;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 #app {
   width: 100%;
   display: flex;
