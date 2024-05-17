@@ -1,5 +1,13 @@
 import React from 'react';
 
 export const Homepage = () => {
-  return <p>hi</p>;
+  const hello = `main( ) {
+    printf("hello, world");
+}`;
+
+  return (
+    <pre className="hello" contentEditable>
+      {hello}
+    </pre>
+  );
 };

@@ -32,6 +32,46 @@ a:active {
   gap: 2rem;
 }
 
+.hello {
+  position: relative;
+  width: 20rem;
+  margin: 0 auto;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 1rem;
+  background-color: black;
+  color: greenyellow;
+  outline: 0.5rem inset #ccc;
+  text-shadow: 0 0 4px rgba(greenyellow, 0.6);
+  caret-color: greenyellow;
+  caret-shape: block;
+
+  @media (min-width: 1024px) {
+    width: 24rem;
+    padding: 2rem;
+    font-size: 1.2rem;
+  }
+
+  &::selection {
+    background-color: greenyellow;
+    color: #000;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      transparent,
+      transparent 3px,
+      #00000050 3px,
+      #00000050 4px
+    );
+    border-radius: 1rem;
+    pointer-events: none;
+  }
+}
+
 .introduction {
   font-size: 1.2rem;
 }
