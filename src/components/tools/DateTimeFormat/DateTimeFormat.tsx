@@ -161,7 +161,7 @@ ${Object.keys(parameters.options)
               Object.keys(parameters.options).map(
                 (option) =>
                   parameters.options[option] !== undefined && (
-                    <div className="option">
+                    <div className="option" key={option}>
                       <label htmlFor={option}>{option}:</label>{' '}
                       {option !== 'hour12' && (
                         <span className="sh-string">'</span>
@@ -187,7 +187,7 @@ ${Object.keys(parameters.options)
                         >
                           {supportedOptions[option] &&
                             supportedOptions[option].map((value) => (
-                              <option>
+                              <option key={value.toString()}>
                                 {option === 'hour12' ? value.toString() : value}
                               </option>
                             ))}
@@ -244,7 +244,7 @@ ${Object.keys(parameters.options)
               >
                 <option value="">Add an option:</option>
                 {availableOptions.map((option) => (
-                  <option>{option}</option>
+                  <option key={option}>{option}</option>
                 ))}
               </select>
             </button>
