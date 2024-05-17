@@ -7,6 +7,17 @@ import { classList } from '../components/classList';
 export const Layout = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const navItems = [
+    {
+      url: '/base64-converter',
+      text: 'Base64 converter',
+    },
+    {
+      url: 'date-time-format-playground',
+      text: 'DateTimeFormat playground',
+    },
+  ];
+
   return (
     <>
       <header>
@@ -23,28 +34,19 @@ export const Layout = () => {
             🍔
           </button>
           <ul>
-            <li>
-              <NavLink
-                to={`/base-64`}
-                className={({ isActive, isPending }) =>
-                  isActive ? 'active' : isPending ? 'pending' : ''
-                }
-                onClick={() => setMenuOpen(false)}
-              >
-                Base64 converter
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to={`/date-time-format`}
-                className={({ isActive, isPending }) =>
-                  isActive ? 'active' : isPending ? 'pending' : ''
-                }
-                onClick={() => setMenuOpen(false)}
-              >
-                DateTimeFormat playground
-              </NavLink>
-            </li>
+            {navItems.map((navItem) => (
+              <li key={navItem.url}>
+                <NavLink
+                  to={navItem.url}
+                  className={({ isActive, isPending }) =>
+                    isActive ? 'active' : isPending ? 'pending' : ''
+                  }
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {navItem.text}
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </nav>
       </header>

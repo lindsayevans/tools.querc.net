@@ -17,11 +17,11 @@ const router = createBrowserRouter([
         element: <Homepage />,
       },
       {
-        path: 'base-64',
+        path: 'base64-converter',
         lazy: () => import('./routes/Base64Route'),
       },
       {
-        path: 'date-time-format',
+        path: 'date-time-format-playground',
         lazy: () => import('./routes/DateTimeFormatRoute'),
       },
     ],
