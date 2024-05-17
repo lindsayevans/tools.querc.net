@@ -1,0 +1,42 @@
+header,
+main {
+  width: 100%;
+  margin: 1rem;
+
+  @media (min-width: 1024px) {
+    max-width: 70vw;
+  }
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  nav ul {
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    a {
+      display: block;
+      padding: 0.5rem 1rem;
+      &.active {
+        background-color: yellowgreen;
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+import React, { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Layout } from './routes/Layout';
+import { ErrorPage } from './routes/Error';
+import { Homepage } from './routes/Homepage';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <Homepage />,
+      },
+      {
+        path: 'base-64',
+        lazy: () => import('./routes/Base64Route'),
+      },
+      {
+        path: 'date-time-format',
+        lazy: () => import('./routes/DateTimeFormatRoute'),
+      },
+    ],
+  },
+]);
+
+const $app = document.getElementById('app');
+
+if ($app) {
+  const root = createRoot($app);
+
+  root.render(
+    <StrictMode>
+      <RouterProvider router={router} />
+    </StrictMode>
+  );
+}
