@@ -2,10 +2,8 @@ import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { ErrorPage } from './routes/Error';
 import { Layout } from './routes/Layout';
-import { Base64 } from './routes/Base64/Base64';
-import { DateTimeFormat } from './routes/DateTimeFormat/DateTimeFormat';
+import { ErrorPage } from './routes/Error';
 import { Homepage } from './routes/Homepage';
 
 const router = createBrowserRouter([
@@ -20,11 +18,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'base-64',
-        element: <Base64 />,
+        lazy: () => import('./routes/Base64Route'),
       },
       {
         path: 'date-time-format',
-        element: <DateTimeFormat />,
+        lazy: () => import('./routes/DateTimeFormatRoute'),
       },
     ],
   },

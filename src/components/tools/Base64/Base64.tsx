@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import './Base64.scss';
-import { classList } from '../../components/classList';
+import { classList } from '../../classList';
 
 export const Base64 = () => {
   const [plaintext, setPlaintext] = useState<string>('Hello world!');

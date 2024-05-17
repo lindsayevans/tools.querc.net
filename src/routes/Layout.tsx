@@ -14,7 +14,7 @@ export const Layout = () => {
               <Link to={`/base-64`}>Base64 converter</Link>
             </li>
             <li>
-              <Link to={`/date-time-format`}>Date time format</Link>
+              <Link to={`/date-time-format`}>DateTimeFormat playground</Link>
             </li>
           </ul>
         </nav>
