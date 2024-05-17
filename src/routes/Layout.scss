@@ -65,6 +65,10 @@ header {
       &.active {
         background-color: yellowgreen;
       }
+
+      &.pending {
+        cursor: wait;
+      }
     }
   }
 
