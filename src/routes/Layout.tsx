@@ -9,24 +9,34 @@ export const Layout = () => {
 
   const navItems = [
     {
-      url: '/base64-converter',
-      text: 'Base64 converter',
+      text: 'Converters',
+      items: [
+        {
+          url: '/base64-converter',
+          text: 'Base64 converter',
+        },
+        {
+          url: 'csv-json-converter',
+          text: 'CSV ⇄ JSON converter',
+        },
+      ],
     },
     {
-      url: 'csv-json-converter',
-      text: 'CSV ⇄ JSON converter',
-    },
-    {
-      url: 'date-time-format-playground',
-      text: 'DateTimeFormat playground',
-    },
-    {
-      url: 'relative-time-format-playground',
-      text: 'RelativeTimeFormat playground',
-    },
-    {
-      url: 'duration-format-playground',
-      text: 'DurationFormat playground',
+      text: 'Formatting',
+      items: [
+        {
+          url: 'date-time-format-playground',
+          text: 'DateTimeFormat playground',
+        },
+        {
+          url: 'relative-time-format-playground',
+          text: 'RelativeTimeFormat playground',
+        },
+        {
+          url: 'duration-format-playground',
+          text: 'DurationFormat playground',
+        },
+      ],
     },
   ];
 
@@ -46,17 +56,27 @@ export const Layout = () => {
             🍔
           </button>
           <ul>
-            {navItems.map((navItem) => (
-              <li key={navItem.url}>
-                <NavLink
-                  to={navItem.url}
-                  className={({ isActive, isPending }) =>
-                    isActive ? 'active' : isPending ? 'pending' : ''
-                  }
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {navItem.text}
-                </NavLink>
+            {navItems.map((group) => (
+              <li key={group.text}>
+                <strong>{group.text}</strong>
+                <ul>
+                  {group.items.map((navItem) => (
+                    <li key={navItem.url}>
+                      <NavLink
+                        to={navItem.url}
+                        className={({ isActive, isPending }) =>
+                          isActive ? 'active' : isPending ? 'pending' : ''
+                        }
+                        onClick={(e) => {
+                          setMenuOpen(false);
+                          (e.target as HTMLAnchorElement).blur();
+                        }}
+                      >
+                        {navItem.text}
+                      </NavLink>
+                    </li>
+                  ))}
+                </ul>
               </li>
             ))}
           </ul>
