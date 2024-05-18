@@ -106,3 +106,22 @@ header {
     }
   }
 }
+
+.github {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 200px;
+  height: 32px;
+  transform: rotate(-45deg) translate(60px, 50px);
+  transform-origin: 50%;
+  background-color: #333;
+
+  &:hover,
+  &:active {
+    background-color: #666;
+  }
+}

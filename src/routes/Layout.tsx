@@ -65,6 +65,17 @@ export const Layout = () => {
       <main>
         <Outlet />
       </main>
+      <a
+        className="github"
+        href="https://github.com/lindsayevans/tools.querc.net"
+      >
+        <img
+          src="/github-mark-white.svg"
+          width={24}
+          height={24}
+          alt="View GitHub repository"
+        />
+      </a>
     </>
   );
 };
