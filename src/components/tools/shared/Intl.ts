@@ -1,3 +1,8 @@
+export const SUPPORTED_TIME_ZONES =
+  'supportedValuesOf' in Intl
+    ? (Intl as any).supportedValuesOf('timeZone')
+    : [];
+
 export const BCP_47 = [
   'ar',
   'ar-SA',

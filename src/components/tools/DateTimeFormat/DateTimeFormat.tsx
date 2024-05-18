@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BCP_47 } from './BCP_47';
+import { BCP_47, SUPPORTED_TIME_ZONES } from '../shared/Intl';
 
 import './DateTimeFormat.scss';
 import { classList } from '../../classList';
@@ -11,10 +11,6 @@ type DateTimeFormatParams = {
 
 export const DateTimeFormat = () => {
   const locales = BCP_47;
-  const timeZones =
-    'supportedValuesOf' in Intl
-      ? (Intl as any).supportedValuesOf('timeZone')
-      : [];
 
   const supportedOptions = {
     calendar: (Intl as any).supportedValuesOf('calendar'),
@@ -42,7 +38,7 @@ export const DateTimeFormat = () => {
     ],
     formatMatcher: ['best fit', 'basic'],
     hour12: [true, false],
-    timeZone: timeZones,
+    timeZone: SUPPORTED_TIME_ZONES,
   };
 
   const defaultParams: DateTimeFormatParams = {
@@ -220,7 +216,7 @@ ${Object.keys(parameters.options)
                             list="timeZoneList"
                           />
                           <datalist id="timeZoneList">
-                            {timeZones.map((x) => (
+                            {SUPPORTED_TIME_ZONES.map((x) => (
                               <option key={x} value={x} />
                             ))}
                           </datalist>

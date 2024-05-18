@@ -28,6 +28,10 @@ const router = createBrowserRouter([
         path: 'date-time-format-playground',
         lazy: () => import('./routes/DateTimeFormatRoute'),
       },
+      {
+        path: 'relative-time-format-playground',
+        lazy: () => import('./routes/RelativeTimeFormatRoute'),
+      },
     ],
   },
 ]);
