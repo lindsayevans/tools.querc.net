@@ -157,6 +157,11 @@ export const DurationFormat = () => {
         )
         .sort()
     );
+    setAvailableDurationProps(
+      supportedDurationProps
+        .filter((x) => !Object.keys(duration).includes(x))
+        .sort()
+    );
   }, [duration, parameters]);
 
   return (
