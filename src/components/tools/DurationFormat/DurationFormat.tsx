@@ -265,6 +265,7 @@ export const DurationFormat = () => {
                       {option !== 'round' && option !== 'fractionalDigits' && (
                         <span className="sh-string">'</span>
                       )}
+                      ,
                       <button
                         type="button"
                         className="remove"
@@ -315,6 +316,7 @@ export const DurationFormat = () => {
                           })
                         }
                       />
+                      ,
                       <button
                         type="button"
                         className="remove"
