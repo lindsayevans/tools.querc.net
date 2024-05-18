@@ -7,6 +7,7 @@ import { BCP_47, SUPPORTED_TIME_ZONES } from '../shared/Intl';
 import { DurationInput } from './types';
 
 import './DurationFormat.scss';
+import { formatOptions } from '../shared/formatOptions';
 
 type DurationFormatParams = {
   locale: string;
@@ -127,10 +128,6 @@ export const DurationFormat = () => {
       ...duration,
       [option]: 1,
     });
-  };
-
-  const formatOptions = (options: any) => {
-    return JSON.stringify(options, null, 2).replace(/\"([a-z]*)\"\:/gi, '$1:');
   };
 
   const copyCode = () => {

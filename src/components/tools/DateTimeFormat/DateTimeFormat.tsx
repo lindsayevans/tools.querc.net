@@ -3,6 +3,7 @@ import { BCP_47, SUPPORTED_TIME_ZONES } from '../shared/Intl';
 
 import './DateTimeFormat.scss';
 import { classList } from '../../classList';
+import { formatOptions } from '../shared/formatOptions';
 
 type DateTimeFormatParams = {
   locale: string;
@@ -92,16 +93,9 @@ export const DateTimeFormat = () => {
   };
 
   const copyCode = () => {
-    const code = `new Intl.DateTimeFormat('${parameters.locale}', {
-${Object.keys(parameters.options)
-  .filter((option) => parameters.options[option] !== undefined)
-  .map((option) => {
-    return `  ${option}: ${option === 'hour12' ? '' : "'"}${
-      parameters.options[option]
-    }${option === 'hour12' ? '' : "'"},`;
-  })
-  .join('\r\n')}
-}).format(new Date())`;
+    const code = `new Intl.DateTimeFormat('${
+      parameters.locale
+    }', ${formatOptions(parameters.options)}).format(new Date())`;
     navigator.clipboard.writeText(code);
     setCopied(true);
     setTimeout(() => {

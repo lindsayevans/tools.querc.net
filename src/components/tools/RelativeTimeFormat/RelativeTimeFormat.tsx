@@ -3,6 +3,7 @@ import { BCP_47 } from '../shared/Intl';
 
 import './RelativeTimeFormat.scss';
 import { classList } from '../../classList';
+import { formatOptions } from '../shared/formatOptions';
 
 type RelativeTimeFormatParams = {
   locale: string;
@@ -84,16 +85,9 @@ export const RelativeTimeFormat = () => {
   };
 
   const copyCode = () => {
-    const code = `new Intl.RelativeTimeFormat('${parameters.locale}', {
-${Object.keys(parameters.options)
-  .filter((option) => parameters.options[option] !== undefined)
-  .map((option) => {
-    return `  ${option}: ${option === 'hour12' ? '' : "'"}${
-      parameters.options[option]
-    }${option === 'hour12' ? '' : "'"},`;
-  })
-  .join('\r\n')}
-}).format(${value}, '${unit}')`;
+    const code = `new Intl.RelativeTimeFormat('${
+      parameters.locale
+    }', ${formatOptions(parameters.options)}).format(${value}, '${unit}')`;
     navigator.clipboard.writeText(code);
     setCopied(true);
     setTimeout(() => {
