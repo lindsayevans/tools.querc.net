@@ -48,7 +48,7 @@ export const DurationFormat = () => {
   };
 
   const defaultParams: DurationFormatParams = {
-    locale: 'en-AU',
+    locale: 'es-MX',
     options: {
       style: 'short',
     },

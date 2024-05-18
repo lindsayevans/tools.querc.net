@@ -42,7 +42,7 @@ export const RelativeTimeFormat = () => {
   ];
 
   const defaultParams: RelativeTimeFormatParams = {
-    locale: 'en-AU',
+    locale: 'en-GB',
     options: {
       style: 'narrow',
       numeric: 'auto',
@@ -51,7 +51,7 @@ export const RelativeTimeFormat = () => {
 
   const [parameters, setParameters] =
     useState<RelativeTimeFormatParams>(defaultParams);
-  const [value, setValue] = useState<number>(28);
+  const [value, setValue] = useState<number>(-1);
   const [unit, setUnit] = useState<RelativeTimeFormatUnits>('day');
   const [formattedValue, setFormattedValue] = useState<string>();
   const [availableOptions, setAvailableOptions] = useState<string[]>(
