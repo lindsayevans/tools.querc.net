@@ -6,7 +6,11 @@ export const Homepage = () => {
 }`;
 
   return (
-    <pre className="hello" contentEditable>
+    <pre
+      className="hello"
+      contentEditable
+      suppressContentEditableWarning={true}
+    >
       {hello}
     </pre>
   );

@@ -24,6 +24,10 @@ export const Layout = () => {
       url: 'relative-time-format-playground',
       text: 'RelativeTimeFormat playground',
     },
+    {
+      url: 'duration-format-playground',
+      text: 'DurationFormat playground',
+    },
   ];
 
   return (
