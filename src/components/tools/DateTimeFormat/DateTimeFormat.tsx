@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BCP_47, SUPPORTED_TIME_ZONES } from '../shared/Intl';
 
 import './DateTimeFormat.scss';
 import { classList } from '../../classList';
 import { formatOptions } from '../shared/formatOptions';
+import {
+  Form,
+  useLocation,
+  useSearchParams,
+  useSubmit,
+} from 'react-router-dom';
 
 type DateTimeFormatParams = {
   locale: string;
@@ -103,6 +109,13 @@ export const DateTimeFormat = () => {
     }, 3000);
   };
 
+  const reset = () => {
+    setDate(new Date());
+    setParameters(defaultParams);
+  };
+
+  const submit = useSubmit();
+
   useEffect(() => {
     try {
       setFormattedDate(formatDate(date));
@@ -119,20 +132,54 @@ export const DateTimeFormat = () => {
     );
   }, [date, parameters]);
 
+  let [searchParams] = useSearchParams();
+  useEffect(() => {
+    if (searchParams.get('date')) {
+      setDate(new Date(searchParams.get('date') as string));
+    }
+
+    const params: DateTimeFormatParams = {
+      locale: searchParams.get('locale') || '',
+      options: {},
+    };
+    Array.from(searchParams.keys())
+      .filter((x) => !['locale', 'date'].includes(x))
+      .forEach((key) => {
+        params.options[key] = searchParams.get(key);
+      });
+    if (params.locale !== '' || Object.keys(params.options).length > 0) {
+      setParameters(params);
+    }
+  }, []);
+
   return (
     <>
       <div className="playground">
-        <div className="input">
-          <button
-            type="button"
-            className={classList([
-              'copy-button',
-              copied ? 'copied' : undefined,
-            ])}
-            onClick={() => copyCode()}
-          >
-            Copy code
-          </button>
+        <Form
+          onChange={(event) => {
+            submit(event.currentTarget);
+          }}
+          className="input"
+        >
+          <div className="form-actions">
+            <button
+              type="button"
+              className={classList([
+                'copy-button',
+                copied ? 'copied' : undefined,
+              ])}
+              onClick={() => copyCode()}
+            >
+              Copy code
+            </button>
+            <button
+              type="button"
+              className={classList(['reset-button'])}
+              onClick={() => reset()}
+            >
+              Reset
+            </button>
+          </div>
           <label htmlFor="locale">
             <span className="sh-keyword">new</span> Intl.
             <span className="sh-property">DateTimeFormat</span>(
@@ -141,6 +188,7 @@ export const DateTimeFormat = () => {
           <input
             type="search"
             id="locale"
+            name="locale"
             className="locale"
             value={parameters?.locale}
             onChange={(e) =>
@@ -168,6 +216,7 @@ export const DateTimeFormat = () => {
                       {option !== 'timeZone' && (
                         <select
                           id={option}
+                          name={option}
                           value={parameters?.options[option]}
                           onChange={(e) =>
                             setParameters({
@@ -197,6 +246,7 @@ export const DateTimeFormat = () => {
                           <input
                             type="search"
                             id="timeZone"
+                            name="timeZone"
                             value={parameters?.options.timeZone}
                             onChange={(e) =>
                               setParameters({
@@ -255,6 +305,7 @@ export const DateTimeFormat = () => {
             <input
               type="datetime-local"
               id="date"
+              name="date"
               value={getDateValue(date)}
               onChange={(e) => setDate(new Date(e.target.value))}
               onInput={(e) =>
@@ -263,7 +314,7 @@ export const DateTimeFormat = () => {
             />
           </span>
           )
-        </div>
+        </Form>
 
         <pre className="output">{formattedDate}</pre>
       </div>

@@ -136,19 +136,24 @@
   position: relative;
   padding: 1rem 0;
 
-  .copy-button {
+  .form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     position: absolute;
     top: -1rem;
     right: 1rem;
 
+    @media (min-width: 1024px) {
+      top: 1rem;
+    }
+  }
+
+  .copy-button {
     &.copied::before {
       content: '✅';
       position: absolute;
       right: -1.5rem;
-    }
-
-    @media (min-width: 1024px) {
-      top: 1rem;
     }
   }
 }

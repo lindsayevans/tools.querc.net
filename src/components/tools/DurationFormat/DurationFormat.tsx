@@ -1,13 +1,14 @@
 /// <reference path="./Intl.DurationFormat.d.ts" />
 
 import '@formatjs/intl-durationformat/polyfill';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { classList } from '../../classList';
 import { BCP_47, SUPPORTED_TIME_ZONES } from '../shared/Intl';
 import { DurationInput } from './types';
 
 import './DurationFormat.scss';
 import { formatOptions } from '../shared/formatOptions';
+import { Form, useSearchParams, useSubmit } from 'react-router-dom';
 
 type DurationFormatParams = {
   locale: string;
@@ -143,6 +144,13 @@ export const DurationFormat = () => {
     }, 3000);
   };
 
+  const reset = () => {
+    setDuration(defaultDuration);
+    setParameters(defaultParams);
+  };
+
+  const submit = useSubmit();
+
   useEffect(() => {
     try {
       setFormattedDuration(formatDuration(duration));
@@ -164,20 +172,60 @@ export const DurationFormat = () => {
     );
   }, [duration, parameters]);
 
+  let [searchParams] = useSearchParams();
+  useEffect(() => {
+    const duration: DurationInput = {};
+    Array.from(searchParams.keys())
+      .filter((x) => supportedDurationProps.includes(x))
+      .forEach((key) => {
+        duration[key] = searchParams.get(key);
+      });
+    if (Object.keys(duration).length > 0) {
+      setDuration(duration);
+    }
+
+    const params: DurationFormatParams = {
+      locale: searchParams.get('locale') || '',
+      options: {},
+    };
+    Array.from(searchParams.keys())
+      .filter((x) => !['locale', ...supportedDurationProps].includes(x))
+      .forEach((key) => {
+        params.options[key] = searchParams.get(key);
+      });
+    if (params.locale !== '' || Object.keys(params.options).length > 0) {
+      setParameters(params);
+    }
+  }, []);
+
   return (
     <>
       <div className="playground">
-        <div className="input">
-          <button
-            type="button"
-            className={classList([
-              'copy-button',
-              copied ? 'copied' : undefined,
-            ])}
-            onClick={() => copyCode()}
-          >
-            Copy code
-          </button>
+        <Form
+          onChange={(event) => {
+            submit(event.currentTarget);
+          }}
+          className="input"
+        >
+          <div className="form-actions">
+            <button
+              type="button"
+              className={classList([
+                'copy-button',
+                copied ? 'copied' : undefined,
+              ])}
+              onClick={() => copyCode()}
+            >
+              Copy code
+            </button>
+            <button
+              type="button"
+              className={classList(['reset-button'])}
+              onClick={() => reset()}
+            >
+              Reset
+            </button>
+          </div>
           <label htmlFor="locale">
             <span className="sh-keyword">new</span> Intl.
             <span className="sh-property">DurationFormat</span>(
@@ -186,6 +234,7 @@ export const DurationFormat = () => {
           <input
             type="search"
             id="locale"
+            name="locale"
             className="locale"
             value={parameters?.locale}
             onChange={(e) =>
@@ -213,6 +262,7 @@ export const DurationFormat = () => {
                       {option !== 'fractionalDigits' && (
                         <select
                           id={option}
+                          name={option}
                           value={parameters?.options[option]}
                           onChange={(e) =>
                             setParameters({
@@ -242,6 +292,7 @@ export const DurationFormat = () => {
                           <input
                             type="number"
                             id="fractionalDigits"
+                            name="fractionalDigits"
                             min={0}
                             max={9}
                             step={1}
@@ -308,6 +359,7 @@ export const DurationFormat = () => {
                         step={1}
                         className="number-input"
                         id={prop}
+                        name={prop}
                         value={duration[prop]}
                         onChange={(e) =>
                           setDuration({
@@ -346,7 +398,7 @@ export const DurationFormat = () => {
             </button>
           </div>
           &#125;)
-        </div>
+        </Form>
 
         <pre className="output">{formattedDuration}</pre>
       </div>

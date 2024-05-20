@@ -4,6 +4,7 @@ import { BCP_47 } from '../shared/Intl';
 import './RelativeTimeFormat.scss';
 import { classList } from '../../classList';
 import { formatOptions } from '../shared/formatOptions';
+import { Form, useSearchParams, useSubmit } from 'react-router-dom';
 
 type RelativeTimeFormatParams = {
   locale: string;
@@ -95,6 +96,14 @@ export const RelativeTimeFormat = () => {
     }, 3000);
   };
 
+  const reset = () => {
+    setValue(-1);
+    setUnit('day');
+    setParameters(defaultParams);
+  };
+
+  const submit = useSubmit();
+
   useEffect(() => {
     try {
       setFormattedValue(formatValue(value, unit));
@@ -111,20 +120,57 @@ export const RelativeTimeFormat = () => {
     );
   }, [value, unit, parameters]);
 
+  let [searchParams] = useSearchParams();
+  useEffect(() => {
+    if (searchParams.get('value')) {
+      setValue(parseInt(searchParams.get('value') as string, 10));
+    }
+    if (searchParams.get('unit')) {
+      setUnit(searchParams.get('unit') as RelativeTimeFormatUnits);
+    }
+
+    const params: RelativeTimeFormatParams = {
+      locale: searchParams.get('locale') || '',
+      options: {},
+    };
+    Array.from(searchParams.keys())
+      .filter((x) => !['locale', 'value', 'unit'].includes(x))
+      .forEach((key) => {
+        params.options[key] = searchParams.get(key);
+      });
+    if (params.locale !== '' || Object.keys(params.options).length > 0) {
+      setParameters(params);
+    }
+  }, []);
+
   return (
     <>
       <div className="playground">
-        <div className="input">
-          <button
-            type="button"
-            className={classList([
-              'copy-button',
-              copied ? 'copied' : undefined,
-            ])}
-            onClick={() => copyCode()}
-          >
-            Copy code
-          </button>
+        <Form
+          onChange={(event) => {
+            submit(event.currentTarget);
+          }}
+          className="input"
+        >
+          <div className="form-actions">
+            <button
+              type="button"
+              className={classList([
+                'copy-button',
+                copied ? 'copied' : undefined,
+              ])}
+              onClick={() => copyCode()}
+            >
+              Copy code
+            </button>
+            <button
+              type="button"
+              className={classList(['reset-button'])}
+              onClick={() => reset()}
+            >
+              Reset
+            </button>
+          </div>
           <label htmlFor="locale">
             <span className="sh-keyword">new</span> Intl.
             <span className="sh-property">RelativeTimeFormat</span>(
@@ -133,6 +179,7 @@ export const RelativeTimeFormat = () => {
           <input
             type="search"
             id="locale"
+            name="locale"
             className="locale"
             value={parameters?.locale}
             onChange={(e) =>
@@ -157,6 +204,7 @@ export const RelativeTimeFormat = () => {
                       <span className="sh-string">'</span>
                       <select
                         id={option}
+                        name={option}
                         value={parameters?.options[option]}
                         onChange={(e) =>
                           setParameters({
@@ -208,6 +256,7 @@ export const RelativeTimeFormat = () => {
           <input
             type="number"
             id="value"
+            name="value"
             className="value-input"
             value={value}
             onChange={(e) => setValue(parseInt(e.target.value, 10))}
@@ -218,6 +267,7 @@ export const RelativeTimeFormat = () => {
           ,<span className="sh-string">'</span>
           <select
             id="unit"
+            name="unit"
             value={unit}
             onChange={(e) => setUnit(e.target.value as RelativeTimeFormatUnits)}
           >
@@ -226,7 +276,7 @@ export const RelativeTimeFormat = () => {
             ))}
           </select>
           <span className="sh-string">'</span>)
-        </div>
+        </Form>
 
         <pre className="output">{formattedValue}</pre>
       </div>

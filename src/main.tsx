@@ -46,8 +46,8 @@ if ($app) {
   const root = createRoot($app);
 
   root.render(
-    <StrictMode>
-      <RouterProvider router={router} />
-    </StrictMode>
+    // <StrictMode>
+    <RouterProvider router={router} />
+    // </StrictMode>
   );
 }
