@@ -9,6 +9,7 @@ export const Homepage = () => {
     <pre
       className="hello"
       contentEditable
+      spellCheck={false}
       suppressContentEditableWarning={true}
     >
       {hello}

@@ -34,7 +34,10 @@ a:active {
 
 .hello {
   position: relative;
-  width: 20rem;
+  min-width: 20rem;
+  max-width: calc(100vw - 2rem);
+  width: fit-content;
+  overflow: hidden;
   margin: 0 auto;
   padding: 1rem;
   font-size: 1.1rem;
@@ -47,7 +50,8 @@ a:active {
   caret-shape: block;
 
   @media (min-width: 1024px) {
-    width: 24rem;
+    min-width: 24rem;
+    max-width: 70vw;
     padding: 2rem;
     font-size: 1.2rem;
   }
