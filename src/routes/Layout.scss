@@ -57,6 +57,7 @@ header {
       ul {
         display: flex;
         opacity: 0;
+        pointer-events: none;
         position: absolute;
         left: -1rem;
         min-width: 16rem;
@@ -75,6 +76,7 @@ header {
         &:focus-within {
           ul {
             opacity: 1;
+            pointer-events: initial;
           }
         }
       }
