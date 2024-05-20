@@ -1,14 +1,19 @@
 /// <reference path="./Intl.DurationFormat.d.ts" />
 
 import '@formatjs/intl-durationformat/polyfill';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { classList } from '../../classList';
-import { BCP_47, SUPPORTED_TIME_ZONES } from '../shared/Intl';
+import { BCP_47 } from '../shared/Intl';
 import { DurationInput } from './types';
 
 import './DurationFormat.scss';
 import { formatOptions } from '../shared/formatOptions';
-import { Form, useSearchParams, useSubmit } from 'react-router-dom';
+import {
+  Form,
+  useLocation,
+  useSearchParams,
+  useSubmit,
+} from 'react-router-dom';
 
 type DurationFormatParams = {
   locale: string;
@@ -172,7 +177,8 @@ export const DurationFormat = () => {
     );
   }, [duration, parameters]);
 
-  let [searchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
   useEffect(() => {
     const duration: DurationInput = {};
     Array.from(searchParams.keys())
@@ -196,7 +202,7 @@ export const DurationFormat = () => {
     if (params.locale !== '' || Object.keys(params.options).length > 0) {
       setParameters(params);
     }
-  }, []);
+  }, [location]);
 
   return (
     <>

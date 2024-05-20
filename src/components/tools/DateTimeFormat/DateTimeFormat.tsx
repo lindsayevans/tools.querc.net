@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BCP_47, SUPPORTED_TIME_ZONES } from '../shared/Intl';
 
 import './DateTimeFormat.scss';
@@ -132,7 +132,8 @@ export const DateTimeFormat = () => {
     );
   }, [date, parameters]);
 
-  let [searchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
   useEffect(() => {
     if (searchParams.get('date')) {
       setDate(new Date(searchParams.get('date') as string));
@@ -150,7 +151,7 @@ export const DateTimeFormat = () => {
     if (params.locale !== '' || Object.keys(params.options).length > 0) {
       setParameters(params);
     }
-  }, []);
+  }, [location]);
 
   return (
     <>

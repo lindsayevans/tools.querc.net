@@ -4,7 +4,12 @@ import { BCP_47 } from '../shared/Intl';
 import './RelativeTimeFormat.scss';
 import { classList } from '../../classList';
 import { formatOptions } from '../shared/formatOptions';
-import { Form, useSearchParams, useSubmit } from 'react-router-dom';
+import {
+  Form,
+  useLocation,
+  useSearchParams,
+  useSubmit,
+} from 'react-router-dom';
 
 type RelativeTimeFormatParams = {
   locale: string;
@@ -120,7 +125,8 @@ export const RelativeTimeFormat = () => {
     );
   }, [value, unit, parameters]);
 
-  let [searchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
   useEffect(() => {
     if (searchParams.get('value')) {
       setValue(parseInt(searchParams.get('value') as string, 10));
@@ -141,7 +147,7 @@ export const RelativeTimeFormat = () => {
     if (params.locale !== '' || Object.keys(params.options).length > 0) {
       setParameters(params);
     }
-  }, []);
+  }, [location]);
 
   return (
     <>
