@@ -46,8 +46,9 @@ a:active {
   color: greenyellow;
   outline: 0.5rem inset #ccc;
   text-shadow: 0 0 4px rgba(greenyellow, 0.6);
-  caret-color: greenyellow;
-  caret-shape: block;
+  // caret-color: greenyellow;
+  // caret-shape: block;
+  caret-color: #000;
 
   @media (min-width: 1024px) {
     min-width: 24rem;
@@ -56,14 +57,19 @@ a:active {
     font-size: 1.2rem;
   }
 
+  * {
+    display: inline;
+  }
+
   &::selection {
     background-color: greenyellow;
     color: #000;
   }
 
-  &::after {
+  &::before {
     content: '';
     position: absolute;
+    z-index: 1;
     inset: 0;
     background: repeating-linear-gradient(
       transparent,
@@ -74,8 +80,22 @@ a:active {
     border-radius: 1rem;
     pointer-events: none;
   }
+
+  &:focus-within:after {
+    content: '█';
+    animation: blonk 0.8s infinite;
+  }
 }
 
 .introduction {
   font-size: 1.2rem;
+}
+
+@keyframes blonk {
+  0% {
+    color: #000;
+  }
+  100% {
+    color: greenyellow;
+  }
 }
