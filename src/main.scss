@@ -20,6 +20,11 @@ a:active {
   color: rebeccapurple;
 }
 
+::selection {
+  background-color: greenyellow;
+  color: #000;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -59,11 +64,6 @@ a:active {
 
   * {
     display: inline;
-  }
-
-  &::selection {
-    background-color: greenyellow;
-    color: #000;
   }
 
   &::before {
