@@ -82,7 +82,7 @@ a:active {
 
   &:focus-within:after {
     content: '█';
-    animation: blonk 0.8s infinite;
+    animation: blonk 1s infinite;
   }
 }
 
@@ -94,7 +94,7 @@ a:active {
   0% {
     color: #000;
   }
-  100% {
+  50% {
     color: greenyellow;
   }
 }
