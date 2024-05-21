@@ -209,7 +209,10 @@ export const DurationFormat = () => {
       <div className="playground">
         <Form
           onChange={(event) => {
-            submit(event.currentTarget);
+            const form = event.currentTarget;
+            setTimeout(() => {
+              submit(form);
+            }, 200);
           }}
           className="input"
         >
