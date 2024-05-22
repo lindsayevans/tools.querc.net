@@ -190,6 +190,7 @@ export const DurationFormat = () => {
   useEffect(() => {
     const duration: DurationInput = {};
     Array.from(searchParams.keys())
+      .map((x) => x.replace('duration.', ''))
       .filter((x) => supportedDurationProps.includes(x))
       .forEach((key) => {
         duration[key] = searchParams.get(key);
@@ -203,7 +204,9 @@ export const DurationFormat = () => {
       options: {},
     };
     Array.from(searchParams.keys())
-      .filter((x) => !['locale', ...supportedDurationProps].includes(x))
+      .map((x) => x.replace('options.', ''))
+      .filter((x) => !x.startsWith('duration.'))
+      .filter((x) => Object.keys(supportedOptions).includes(x))
       .forEach((key) => {
         params.options[key] = searchParams.get(key);
       });
@@ -269,7 +272,7 @@ export const DurationFormat = () => {
                       {option !== 'fractionalDigits' && (
                         <select
                           id={option}
-                          name={option}
+                          name={`options.${option}`}
                           value={parameters?.options[option]}
                           onChange={(e) =>
                             setParameters({
@@ -368,7 +371,7 @@ export const DurationFormat = () => {
                         step={1}
                         className="number-input"
                         id={prop}
-                        name={prop}
+                        name={`duration.${prop}`}
                         value={duration[prop]}
                         onChange={(e) =>
                           setDuration({
