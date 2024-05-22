@@ -55,7 +55,15 @@ export const Base64 = () => {
         const prefix = includeDataUrl
           ? `data:${getMediaType(file.item(0))};base64,`
           : '';
-        setEncoded(prefix + btoa(String.fromCharCode(...new Uint8Array(x))));
+        try {
+          setEncoded(prefix + btoa(String.fromCharCode(...new Uint8Array(x))));
+        } catch (e) {
+          alert(
+            e.message && e.message.includes('stack size')
+              ? 'File is too big'
+              : `Something broke: ${e.message}`
+          );
+        }
       });
     }
   };
