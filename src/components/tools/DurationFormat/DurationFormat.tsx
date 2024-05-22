@@ -188,17 +188,6 @@ export const DurationFormat = () => {
   const [searchParams] = useSearchParams();
   const location = useLocation();
   useEffect(() => {
-    const duration: DurationInput = {};
-    Array.from(searchParams.keys())
-      .map((x) => x.replace('duration.', ''))
-      .filter((x) => supportedDurationProps.includes(x))
-      .forEach((key) => {
-        duration[key] = searchParams.get(key);
-      });
-    if (Object.keys(duration).length > 0) {
-      setDuration(duration);
-    }
-
     const params: DurationFormatParams = {
       locale: searchParams.get('locale') || '',
       options: {},
@@ -208,10 +197,21 @@ export const DurationFormat = () => {
       .filter((x) => !x.startsWith('duration.'))
       .filter((x) => Object.keys(supportedOptions).includes(x))
       .forEach((key) => {
-        params.options[key] = searchParams.get(key);
+        params.options[key] = searchParams.get('options.' + key);
       });
     if (params.locale !== '' || Object.keys(params.options).length > 0) {
       setParameters(params);
+    }
+
+    const duration: DurationInput = {};
+    Array.from(searchParams.keys())
+      .map((x) => x.replace('duration.', ''))
+      .filter((x) => supportedDurationProps.includes(x))
+      .forEach((key) => {
+        duration[key] = searchParams.get('duration.' + key);
+      });
+    if (Object.keys(duration).length > 0) {
+      setDuration(duration);
     }
   }, [location]);
 
@@ -413,7 +413,6 @@ export const DurationFormat = () => {
           </div>
           &#125;)
         </Form>
-
         <pre className="output">{formattedDuration}</pre>
       </div>
     </>
