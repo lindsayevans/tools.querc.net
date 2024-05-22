@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { BCP_47, SUPPORTED_TIME_ZONES } from '../shared/Intl';
 
 import './DateTimeFormat.scss';
-import { classList } from '../../classList';
 import { formatOptions } from '../shared/formatOptions';
 import {
   Form,
@@ -10,6 +9,13 @@ import {
   useSearchParams,
   useSubmit,
 } from 'react-router-dom';
+import { Button } from '../../ui/Button';
+import {
+  Clipboard,
+  ClipboardCheck,
+  PlusCircle,
+  Trash3,
+} from 'react-bootstrap-icons';
 
 type DateTimeFormatParams = {
   locale: string;
@@ -166,23 +172,13 @@ export const DateTimeFormat = () => {
           className="input"
         >
           <div className="form-actions">
-            <button
-              type="button"
-              className={classList([
-                'copy-button',
-                copied ? 'copied' : undefined,
-              ])}
+            <Button
               onClick={() => copyCode()}
+              icon={copied ? <ClipboardCheck /> : <Clipboard />}
             >
               Copy code
-            </button>
-            <button
-              type="button"
-              className={classList(['reset-button'])}
-              onClick={() => reset()}
-            >
-              Reset
-            </button>
+            </Button>
+            <Button onClick={() => reset()}>Reset</Button>
           </div>
           <label htmlFor="locale">
             <span className="sh-keyword">new</span> Intl.
@@ -280,13 +276,13 @@ export const DateTimeFormat = () => {
                         onClick={() => removeOption(option)}
                         title="Remove option"
                       >
-                        ❌
+                        <Trash3 />
                       </button>
                     </div>
                   )
               )}
             <button type="button" className="add" title="Add option">
-              ➕
+              <PlusCircle />
               <select
                 onChange={(e) => {
                   if (e.target.value !== '') {

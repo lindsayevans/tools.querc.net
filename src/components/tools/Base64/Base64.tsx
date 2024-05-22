@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { ArrowLeftShort, ArrowRightShort } from 'react-bootstrap-icons';
 
 import './Base64.scss';
 import { classList } from '../../classList';
-import { useLocation } from 'react-router-dom';
+import { Button } from '../../ui/Button';
 
 type Tab = 'plaintext' | 'file';
 
@@ -170,12 +172,16 @@ export const Base64 = () => {
         </div>
 
         <div className="buttons">
-          <button type="button" onClick={() => convertTo()}>
-            Encode&nbsp;&raquo;
-          </button>
-          <button type="button" onClick={() => convertFrom()}>
-            &laquo;&nbsp;Decode
-          </button>
+          <Button onClick={() => convertTo()} icon={<ArrowRightShort />}>
+            Encode
+          </Button>
+          <Button
+            onClick={() => convertFrom()}
+            icon={<ArrowLeftShort />}
+            iconPosition="left"
+          >
+            Decode
+          </Button>
         </div>
         <div className="field-group">
           <label htmlFor="encoded">Encoded</label>

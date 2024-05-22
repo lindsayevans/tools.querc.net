@@ -10,6 +10,13 @@ import {
   useSearchParams,
   useSubmit,
 } from 'react-router-dom';
+import {
+  ClipboardCheck,
+  Clipboard,
+  PlusCircle,
+  Trash3,
+} from 'react-bootstrap-icons';
+import { Button } from '../../ui/Button';
 
 type RelativeTimeFormatParams = {
   locale: string;
@@ -162,23 +169,13 @@ export const RelativeTimeFormat = () => {
           className="input"
         >
           <div className="form-actions">
-            <button
-              type="button"
-              className={classList([
-                'copy-button',
-                copied ? 'copied' : undefined,
-              ])}
+            <Button
               onClick={() => copyCode()}
+              icon={copied ? <ClipboardCheck /> : <Clipboard />}
             >
               Copy code
-            </button>
-            <button
-              type="button"
-              className={classList(['reset-button'])}
-              onClick={() => reset()}
-            >
-              Reset
-            </button>
+            </Button>
+            <Button onClick={() => reset()}>Reset</Button>
           </div>
           <label htmlFor="locale">
             <span className="sh-keyword">new</span> Intl.
@@ -237,13 +234,13 @@ export const RelativeTimeFormat = () => {
                         onClick={() => removeOption(option)}
                         title="Remove option"
                       >
-                        ❌
+                        <Trash3 />
                       </button>
                     </div>
                   )
               )}
             <button type="button" className="add" title="Add option">
-              ➕
+              <PlusCircle />
               <select
                 onChange={(e) => {
                   if (e.target.value !== '') {

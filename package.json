@@ -15,6 +15,8 @@
   "author": "Lindsay Evans <linz@linz.id.au>",
   "license": "MIT",
   "devDependencies": {
+    "@parcel/optimizer-data-url": "^2.12.0",
+    "@parcel/transformer-inline-string": "^2.12.0",
     "@parcel/transformer-sass": "^2.12.0",
     "@types/papaparse": "^5.3.14",
     "@types/react": "^18.3.1",
@@ -27,6 +29,7 @@
     "@formatjs/intl-durationformat": "^0.2.2",
     "papaparse": "^5.4.1",
     "react": "^18.3.1",
+    "react-bootstrap-icons": "^1.11.4",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.23.1"
   }

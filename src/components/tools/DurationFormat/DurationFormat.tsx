@@ -14,6 +14,14 @@ import {
   useSearchParams,
   useSubmit,
 } from 'react-router-dom';
+import {
+  ClipboardCheck,
+  Clipboard,
+  PlusCircle,
+  XCircle,
+  Trash3,
+} from 'react-bootstrap-icons';
+import { Button } from '../../ui/Button';
 
 type DurationFormatParams = {
   locale: string;
@@ -217,23 +225,13 @@ export const DurationFormat = () => {
           className="input"
         >
           <div className="form-actions">
-            <button
-              type="button"
-              className={classList([
-                'copy-button',
-                copied ? 'copied' : undefined,
-              ])}
+            <Button
               onClick={() => copyCode()}
+              icon={copied ? <ClipboardCheck /> : <Clipboard />}
             >
               Copy code
-            </button>
-            <button
-              type="button"
-              className={classList(['reset-button'])}
-              onClick={() => reset()}
-            >
-              Reset
-            </button>
+            </Button>
+            <Button onClick={() => reset()}>Reset</Button>
           </div>
           <label htmlFor="locale">
             <span className="sh-keyword">new</span> Intl.
@@ -332,13 +330,13 @@ export const DurationFormat = () => {
                         onClick={() => removeOption(option)}
                         title="Remove option"
                       >
-                        ❌
+                        <Trash3 />
                       </button>
                     </div>
                   )
               )}
             <button type="button" className="add" title="Add option">
-              ➕
+              <PlusCircle />
               <select
                 onChange={(e) => {
                   if (e.target.value !== '') {
@@ -384,13 +382,13 @@ export const DurationFormat = () => {
                         onClick={() => removeDurationProp(prop)}
                         title="Remove duration value"
                       >
-                        ❌
+                        <Trash3 />
                       </button>
                     </div>
                   )
               )}
             <button type="button" className="add" title="Add duration value">
-              ➕
+              <PlusCircle />
               <select
                 onChange={(e) => {
                   if (e.target.value !== '') {

@@ -1,0 +1,31 @@
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  white-space: nowrap;
+  background-color: #e3e3e3;
+  justify-content: center;
+  border: 1px solid #333;
+  border-radius: 4px;
+  transition: all 0.15s ease-in-out;
+  box-shadow: 0 0 0 0 rgba(#333, 0.3);
+
+  &:hover,
+  &:active {
+    background-color: #ccc;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 0.25rem rgba(#333, 0.3);
+  }
+
+  &:active {
+    box-shadow: 0 0 0 0.5rem rgba(green, 0.3);
+  }
+
+  .bi {
+    font-size: 16px;
+  }
+}

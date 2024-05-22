@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Papa from 'papaparse';
+import { ArrowLeftShort, ArrowRightShort } from 'react-bootstrap-icons';
 
 import './CsvJsonConverter.scss';
+import { Button } from '../../ui/Button';
 
 export const CsvJsonConverter = () => {
   const [csv, setCsv] = useState<string>(`Name,Email
@@ -69,12 +71,16 @@ Sarah Brown,sarah.brown@example.com`);
           ></textarea>
         </div>
         <div className="buttons">
-          <button type="button" onClick={() => convertTo()}>
-            To JSON&nbsp;&raquo;
-          </button>
-          <button type="button" onClick={() => convertFrom()}>
-            &laquo;&nbsp;To CSV
-          </button>
+          <Button onClick={() => convertTo()} icon={<ArrowRightShort />}>
+            To JSON
+          </Button>
+          <Button
+            onClick={() => convertFrom()}
+            icon={<ArrowLeftShort />}
+            iconPosition="left"
+          >
+            To CSV
+          </Button>
         </div>
         <div className="field-group">
           <label htmlFor="json">JSON</label>
