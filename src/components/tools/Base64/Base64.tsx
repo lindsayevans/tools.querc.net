@@ -9,7 +9,8 @@ export const Base64 = () => {
   const [includeDataUrl, setIncludeDataUrl] = useState(false);
   const [encoded, setEncoded] = useState<string>();
   const [currentTab, setCurrentTab] = useState<'plaintext' | 'file'>(
-    'plaintext'
+    // 'plaintext'
+    'file'
   );
 
   const getFileContent = (file: File | null): Promise<ArrayBuffer> => {
@@ -33,6 +34,18 @@ export const Base64 = () => {
     }
 
     return file.type;
+  };
+
+  const getFileSize = (size?: number) => {
+    if (!size) {
+      return;
+    }
+
+    if (size > 1000000) {
+      return `${(size / 1024 / 1024).toPrecision(2)}Mb`;
+    }
+
+    return `${(size / 1024).toPrecision(2)}Kb`;
   };
 
   const convertTo = () => {
@@ -109,13 +122,23 @@ export const Base64 = () => {
             ])}
           >
             <div className="field-group">
-              <label htmlFor="file">File</label>
-              <input
-                type="file"
-                className="file-input"
-                onChange={(e) => setFile(e.target.files as FileList)}
-              />
-              <label htmlFor="includeDataUri">
+              <div className={classList(['dropzone', file ? 'has-file' : ''])}>
+                <label htmlFor="file" className="show">
+                  Drag file here or click to select
+                  <input
+                    type="file"
+                    className="file-input"
+                    onChange={(e) => setFile(e.target.files as FileList)}
+                  />
+                </label>
+                {file && file.item(0) && (
+                  <p className="file-name">
+                    <b>{file.item(0)?.name}</b> (
+                    {getFileSize(file.item(0)?.size)})
+                  </p>
+                )}
+              </div>
+              <label htmlFor="includeDataUri" className="show">
                 <input
                   type="checkbox"
                   id="includeDataUri"
