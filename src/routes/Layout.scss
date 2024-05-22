@@ -22,11 +22,21 @@ header {
 
   h1 {
     margin: 0;
+    font-family: 'Fira Code Retina', 'Fira Code', monospace;
+    font-weight: 100;
 
     a:link,
     a:visited {
-      text-decoration: none;
       color: #333;
+      text-decoration-color: transparent;
+      text-decoration-style: double;
+      text-decoration-thickness: 1px;
+      transition: text-decoration-color 0.5s ease-in-out;
+
+      &:hover,
+      &:active {
+        text-decoration-color: green;
+      }
     }
   }
 
@@ -66,7 +76,7 @@ header {
         background-color: #e3e3e3;
         box-shadow: 0 10px 8px #00000033;
         transition: opacity 0.15s ease-in-out;
-        border-radius: 0 0 8px 8px;
+        border-radius: 0 0 0.5rem 0.5rem;
       }
 
       > li {
@@ -88,20 +98,27 @@ header {
 
     ul {
       margin: 0;
-      padding: 0;
+      padding: 1rem 0 0;
       list-style-type: none;
 
       li {
         display: flex;
         align-items: stretch;
+
+        &:last-of-type a {
+          border-radius: 0 0 0.5rem 0.5rem;
+        }
       }
 
-      a {
+      a:link,
+      a:visited {
         display: flex;
         align-items: center;
         justify-content: flex-start;
         width: 100%;
         padding: 1rem;
+        text-decoration: none;
+        color: #333;
 
         @media (min-width: 1024px) {
           padding: 0.5rem 1rem;
@@ -109,6 +126,11 @@ header {
 
         &.active {
           background-color: yellowgreen;
+        }
+
+        &:hover {
+          background-color: green;
+          color: #fff;
         }
 
         &.pending {
