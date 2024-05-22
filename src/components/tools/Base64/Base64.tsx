@@ -11,6 +11,7 @@ type Tab = 'plaintext' | 'file';
 export const Base64 = () => {
   const [plaintext, setPlaintext] = useState<string>('Hello world!');
   const [file, setFile] = useState<FileList>();
+  const [download, setDownload] = useState<string>();
   const [includeDataUrl, setIncludeDataUrl] = useState(false);
   const [encoded, setEncoded] = useState<string>();
   const [currentTab, setCurrentTab] = useState<Tab>('plaintext');
@@ -73,8 +74,11 @@ export const Base64 = () => {
 
   const convertFrom = () => {
     if (encoded) {
-      setPlaintext(atob(encoded));
-      setCurrentTab('plaintext');
+      if (currentTab === 'plaintext') {
+        setPlaintext(atob(encoded));
+      } else {
+        setDownload(encoded);
+      }
     }
   };
 
@@ -158,6 +162,20 @@ export const Base64 = () => {
                   </p>
                 )}
               </div>
+              {download && (
+                <p>
+                  <a
+                    href={
+                      includeDataUrl
+                        ? download
+                        : `data:unknown;base64,${encoded}`
+                    }
+                    download={true}
+                  >
+                    Download
+                  </a>
+                </p>
+              )}
               <label htmlFor="includeDataUri" className="show">
                 <input
                   type="checkbox"
