@@ -9,8 +9,7 @@ export const Base64 = () => {
   const [includeDataUrl, setIncludeDataUrl] = useState(false);
   const [encoded, setEncoded] = useState<string>();
   const [currentTab, setCurrentTab] = useState<'plaintext' | 'file'>(
-    // 'plaintext'
-    'file'
+    'plaintext'
   );
 
   const getFileContent = (file: File | null): Promise<ArrayBuffer> => {
