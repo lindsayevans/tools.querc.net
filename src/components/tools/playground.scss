@@ -142,13 +142,13 @@
 
   .form-actions {
     display: flex;
-    flex-direction: column;
     gap: 0.5rem;
     position: absolute;
-    top: -1rem;
-    right: 1rem;
+    top: -2rem;
+    right: 0;
 
     @media (min-width: 1024px) {
+      flex-direction: column;
       top: 1rem;
     }
   }
