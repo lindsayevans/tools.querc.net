@@ -3,7 +3,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 
 import './Layout.scss';
 import { classList } from '../components/classList';
-import { Github } from 'react-bootstrap-icons';
+import { Github, ThreeDotsVertical } from 'react-bootstrap-icons';
 
 export const Layout = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -56,7 +56,7 @@ export const Layout = () => {
             onClick={() => setMenuOpen(!menuOpen)}
             title={menuOpen ? 'Hide menu' : 'Show menu'}
           >
-            🍔
+            <ThreeDotsVertical size={24} />
           </button>
           <ul>
             {navItems.map((group) => (
