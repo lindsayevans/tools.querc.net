@@ -50,14 +50,14 @@ a:active {
   padding: 1rem;
   font-size: 1.1rem;
   border-radius: 1rem;
-  background-color: black;
+  background-color: #000;
   font-family: 'Fira Code', monospace;
   color: greenyellow;
   outline: 0.5rem inset #ccc;
   text-shadow: 0 0 4px rgba(greenyellow, 0.6);
   // caret-color: greenyellow;
   // caret-shape: block;
-  caret-color: #000;
+  caret-color: transparent;
 
   @media (min-width: 1024px) {
     min-width: 33vw;
@@ -77,12 +77,14 @@ a:active {
     content: '';
     position: absolute;
     inset: 0;
-    background: repeating-linear-gradient(
-      transparent,
-      transparent 3px,
-      #00000050 3px,
-      #00000050 4px
-    );
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI4MCIgaGVpZ2h0PSI4MzIiIHZpZXdCb3g9IjAgMCAxMjgwIDgzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyODAiIGhlaWdodD0iODMyIiBmaWxsPSJ1cmwoI3BhaW50MF9yYWRpYWxfMzM3XzMpIi8+CjxkZWZzPgo8cmFkaWFsR3JhZGllbnQgaWQ9InBhaW50MF9yYWRpYWxfMzM3XzMiIGN4PSIwIiBjeT0iMCIgcj0iMSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGdyYWRpZW50VHJhbnNmb3JtPSJyb3RhdGUoMzMuMDIzOSkgc2NhbGUoMTUyNi42NCAyMzQ4LjY3KSI+CjxzdG9wIHN0b3AtY29sb3I9IndoaXRlIiBzdG9wLW9wYWNpdHk9IjAuMzMiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9IjAiLz4KPC9yYWRpYWxHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4K'),
+      repeating-linear-gradient(
+        transparent,
+        transparent 3px,
+        #00000050 3px,
+        #00000050 4px
+      );
+    background-size: cover;
     border-radius: 1rem;
     pointer-events: none;
   }
