@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 
 import './Base64.scss';
 import { classList } from '../../classList';
+import { useLocation } from 'react-router-dom';
+
+type Tab = 'plaintext' | 'file';
 
 export const Base64 = () => {
   const [plaintext, setPlaintext] = useState<string>('Hello world!');
   const [file, setFile] = useState<FileList>();
   const [includeDataUrl, setIncludeDataUrl] = useState(false);
   const [encoded, setEncoded] = useState<string>();
-  const [currentTab, setCurrentTab] = useState<'plaintext' | 'file'>(
-    'plaintext'
-  );
+  const [currentTab, setCurrentTab] = useState<Tab>('plaintext');
 
   const getFileContent = (file: File | null): Promise<ArrayBuffer> => {
     return new Promise((resolve, reject) => {
@@ -74,6 +75,16 @@ export const Base64 = () => {
       setCurrentTab('plaintext');
     }
   };
+
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash && location.hash.includes('-tab')) {
+      const tab = location.hash.replace('#', '').replace('-tab', '') as Tab;
+      if (tab !== currentTab) {
+        setCurrentTab(tab);
+      }
+    }
+  }, [location]);
 
   return (
     <>
