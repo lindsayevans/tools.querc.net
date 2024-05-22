@@ -105,8 +105,10 @@ header {
         display: flex;
         align-items: stretch;
 
-        &:last-of-type a {
-          border-radius: 0 0 0.5rem 0.5rem;
+        @media (min-width: 1024px) {
+          &:last-of-type a {
+            border-radius: 0 0 0.5rem 0.5rem;
+          }
         }
       }
 

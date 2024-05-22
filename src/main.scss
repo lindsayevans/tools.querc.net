@@ -60,8 +60,11 @@ a:active {
   caret-color: #000;
 
   @media (min-width: 1024px) {
-    min-width: 24rem;
-    max-width: 70vw;
+    min-width: 33vw;
+    max-width: 66vw;
+    min-height: 33vh;
+    max-height: 90vh;
+    margin-top: 10vh;
     padding: 2rem;
     font-size: 1.2rem;
   }
