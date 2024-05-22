@@ -281,22 +281,24 @@ export const DateTimeFormat = () => {
                     </div>
                   )
               )}
-            <button type="button" className="add" title="Add option">
-              <PlusCircle />
-              <select
-                onChange={(e) => {
-                  if (e.target.value !== '') {
-                    addOption(e.target.value);
-                    e.target.value = '';
-                  }
-                }}
-              >
-                <option value="">Add an option:</option>
-                {availableOptions.map((option) => (
-                  <option key={option}>{option}</option>
-                ))}
-              </select>
-            </button>
+            {availableOptions.length > 0 && (
+              <button type="button" className="add" title="Add option">
+                <PlusCircle />
+                <select
+                  onChange={(e) => {
+                    if (e.target.value !== '') {
+                      addOption(e.target.value);
+                      e.target.value = '';
+                    }
+                  }}
+                >
+                  <option value="">Add an option:</option>
+                  {availableOptions.map((option) => (
+                    <option key={option}>{option}</option>
+                  ))}
+                </select>
+              </button>
+            )}
           </div>
           <label htmlFor="date">
             &#125;).<span className="sh-property">format</span>(

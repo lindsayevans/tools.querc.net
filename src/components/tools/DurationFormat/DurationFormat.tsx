@@ -335,22 +335,24 @@ export const DurationFormat = () => {
                     </div>
                   )
               )}
-            <button type="button" className="add" title="Add option">
-              <PlusCircle />
-              <select
-                onChange={(e) => {
-                  if (e.target.value !== '') {
-                    addOption(e.target.value);
-                    e.target.value = '';
-                  }
-                }}
-              >
-                <option value="">Add an option:</option>
-                {availableOptions.map((option) => (
-                  <option key={option}>{option}</option>
-                ))}
-              </select>
-            </button>
+            {availableOptions.length > 0 && (
+              <button type="button" className="add" title="Add option">
+                <PlusCircle />
+                <select
+                  onChange={(e) => {
+                    if (e.target.value !== '') {
+                      addOption(e.target.value);
+                      e.target.value = '';
+                    }
+                  }}
+                >
+                  <option value="">Add an option:</option>
+                  {availableOptions.map((option) => (
+                    <option key={option}>{option}</option>
+                  ))}
+                </select>
+              </button>
+            )}
           </div>
           &#125;).<span className="sh-property">format</span>(&#123;
           <div>
@@ -387,22 +389,24 @@ export const DurationFormat = () => {
                     </div>
                   )
               )}
-            <button type="button" className="add" title="Add duration value">
-              <PlusCircle />
-              <select
-                onChange={(e) => {
-                  if (e.target.value !== '') {
-                    addDurationProp(e.target.value);
-                    e.target.value = '';
-                  }
-                }}
-              >
-                <option value="">Add a duration value:</option>
-                {availableDurationProps.map((option) => (
-                  <option key={option}>{option}</option>
-                ))}
-              </select>
-            </button>
+            {availableDurationProps.length > 0 && (
+              <button type="button" className="add" title="Add duration value">
+                <PlusCircle />
+                <select
+                  onChange={(e) => {
+                    if (e.target.value !== '') {
+                      addDurationProp(e.target.value);
+                      e.target.value = '';
+                    }
+                  }}
+                >
+                  <option value="">Add a duration value:</option>
+                  {availableDurationProps.map((option) => (
+                    <option key={option}>{option}</option>
+                  ))}
+                </select>
+              </button>
+            )}
           </div>
           &#125;)
         </Form>

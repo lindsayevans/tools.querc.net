@@ -15,6 +15,7 @@ export type ButtonProps = {
   className?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 };
+
 export const Button: React.FC<PropsWithChildren<ButtonProps>> = (props) => {
   const {
     type = 'button',
