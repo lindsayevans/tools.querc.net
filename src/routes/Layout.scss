@@ -24,18 +24,33 @@ header {
     margin: 0;
     font-family: 'Fira Code Retina', 'Fira Code', monospace;
     font-weight: 100;
+    letter-spacing: -3px;
+
+    a {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    i {
+      color: #302513;
+      line-height: 27px;
+      transition: color 0.5s ease-in-out;
+    }
 
     a:link,
     a:visited {
-      color: #333;
-      text-decoration-color: transparent;
-      text-decoration-style: double;
-      text-decoration-thickness: 1px;
-      transition: text-decoration-color 0.5s ease-in-out;
+      color: #2b6438;
+      text-decoration: none;
+      transition: all 0.5s ease-in-out;
 
       &:hover,
       &:active {
-        text-decoration-color: green;
+        color: #302513;
+
+        i {
+          color: #2b6438;
+          font-style: normal;
+        }
       }
     }
   }

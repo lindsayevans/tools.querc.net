@@ -45,7 +45,9 @@ export const Layout = () => {
     <>
       <header>
         <h1>
-          <Link to="/">tools.querc.net</Link>
+          <Link to="/">
+            tools<i>.</i>querc<i>.</i>net
+          </Link>
         </h1>
         <nav className={classList([menuOpen ? 'open' : undefined])}>
           <button
