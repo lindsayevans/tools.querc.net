@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 
 import './Layout.scss';
 import { classList } from '../components/classList';
+import { Github } from 'react-bootstrap-icons';
 
 export const Layout = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -89,12 +90,7 @@ export const Layout = () => {
         className="github"
         href="https://github.com/lindsayevans/tools.querc.net"
       >
-        <img
-          src="/github-mark-white.svg"
-          width={24}
-          height={24}
-          alt="View GitHub repository"
-        />
+        <Github size={24} title="View GitHub repository" />
       </a>
     </>
   );
