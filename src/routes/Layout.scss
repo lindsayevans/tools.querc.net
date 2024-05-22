@@ -36,20 +36,22 @@ header {
       line-height: 27px;
       letter-spacing: -6px;
       margin-left: -6px;
+      transition: all 0.5s ease-in-out;
     }
 
     a:link,
     a:visited {
       color: #2b6438;
       text-decoration: none;
-      transition: all 0.5s ease-in-out;
+      transition: color 1s ease-in-out;
 
       &:hover,
       &:active {
         color: #302513;
 
         i {
-          animation: rainbow 3s ease-in-out infinite;
+          color: rgba(208, 222, 33, 0.8);
+          animation: rainbow 3s ease-in-out 1s infinite;
         }
       }
     }
@@ -210,36 +212,36 @@ header {
 
 @keyframes rainbow {
   0% {
-    color: rgba(255, 0, 0, 0.8);
-  }
-  10% {
-    color: rgba(255, 154, 0, 0.8);
-  }
-  20% {
     color: rgba(208, 222, 33, 0.8);
   }
-  30% {
+  10% {
     color: rgba(79, 220, 74, 0.8);
   }
-  40% {
+  20% {
     color: rgba(63, 218, 216, 0.8);
   }
-  50% {
+  30% {
     color: rgba(47, 201, 226, 0.8);
   }
-  60% {
+  40% {
     color: rgba(28, 127, 238, 0.8);
   }
-  70% {
+  50% {
     color: rgba(95, 21, 242, 0.8);
   }
-  80% {
+  60% {
     color: rgba(186, 12, 248, 0.8);
   }
-  90% {
+  70% {
     color: rgba(251, 7, 217, 0.8);
   }
-  100% {
+  80% {
     color: rgba(255, 0, 0, 0.8);
+  }
+  90% {
+    color: rgba(255, 0, 0, 0.8);
+  }
+  100% {
+    color: rgba(255, 154, 0, 0.8);
   }
 }
