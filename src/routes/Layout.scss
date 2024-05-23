@@ -45,6 +45,12 @@ header {
       text-decoration: none;
       transition: color 1s ease-in-out;
 
+      &:focus-visible {
+        outline: none;
+        text-shadow: -1px -1px 0 yellowgreen, 1px -1px 0 yellowgreen,
+          -1px 1px 0 yellowgreen, 1px 1px 0 yellowgreen;
+      }
+
       &:hover,
       &:active {
         color: #302513;
@@ -143,13 +149,16 @@ header {
           padding: 0.5rem 1rem;
         }
 
-        &.active {
+        &.active,
+        &:active {
           background-color: yellowgreen;
         }
 
-        &:hover {
+        &:hover,
+        &:focus {
           background-color: green;
           color: #fff;
+          outline: none;
         }
 
         &.pending {
