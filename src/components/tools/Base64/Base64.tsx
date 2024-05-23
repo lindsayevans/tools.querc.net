@@ -5,6 +5,8 @@ import { ArrowLeftShort, ArrowRightShort } from 'react-bootstrap-icons';
 import './Base64.scss';
 import { classList } from '../../classList';
 import { Button } from '../../ui/Button';
+import { Tabs } from '../../ui/Tabs/Tabs';
+import { Tab } from '../../ui/Tabs/Tab';
 
 type Tab = 'plaintext' | 'file';
 
@@ -95,38 +97,8 @@ export const Base64 = () => {
   return (
     <>
       <div className="converters">
-        <div className="tabs">
-          <ul className="tab-buttons">
-            <li
-              className={classList([
-                'tab-button',
-                currentTab === 'plaintext' ? 'tab-button--active' : '',
-              ])}
-            >
-              <a
-                href="#plaintext-tab"
-                onClick={() => setCurrentTab('plaintext')}
-              >
-                Plaintext
-              </a>
-            </li>
-            <li
-              className={classList([
-                'tab-button',
-                currentTab === 'file' ? 'tab-button--active' : '',
-              ])}
-            >
-              <a href="#file-tab" onClick={() => setCurrentTab('file')}>
-                File
-              </a>
-            </li>
-          </ul>
-          <div
-            className={classList([
-              'tab-content',
-              currentTab === 'plaintext' ? 'tab-content--active' : '',
-            ])}
-          >
+        <Tabs>
+          <Tab title="Plaintext">
             <div className="field-group">
               <label htmlFor="plaintext">Plaintext</label>
               <textarea
@@ -139,13 +111,8 @@ export const Base64 = () => {
                 onFocus={(e) => e.target.select()}
               ></textarea>
             </div>
-          </div>
-          <div
-            className={classList([
-              'tab-content',
-              currentTab === 'file' ? 'tab-content--active' : '',
-            ])}
-          >
+          </Tab>
+          <Tab title="File">
             <div className="field-group">
               <div className={classList(['dropzone', file ? 'has-file' : ''])}>
                 <label htmlFor="file" className="show">
@@ -187,8 +154,8 @@ export const Base64 = () => {
                 Include data URL
               </label>
             </div>
-          </div>
-        </div>
+          </Tab>
+        </Tabs>
 
         <div className="buttons">
           <Button onClick={() => convertTo()} icon={<ArrowRightShort />}>

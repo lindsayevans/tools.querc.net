@@ -1,0 +1,44 @@
+.tabs {
+  width: 100%;
+  height: 100%;
+
+  .tab-buttons {
+    display: flex;
+    gap: 0.5rem;
+    list-style-type: none;
+    margin: 0 0 1rem;
+    padding: 0;
+
+    li {
+      margin: 0;
+      padding: 0;
+    }
+
+    .tab-button {
+      a {
+        display: block;
+        padding: 0.5rem 1rem;
+      }
+
+      &--active {
+        background-color: #fff;
+      }
+    }
+  }
+
+  .tab-content {
+    display: none;
+
+    label:first-of-type:not(.show) {
+      display: none;
+    }
+
+    .textarea {
+      max-height: 10rem;
+    }
+
+    &--active {
+      display: block;
+    }
+  }
+}
