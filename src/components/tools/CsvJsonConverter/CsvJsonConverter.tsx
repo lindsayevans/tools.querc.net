@@ -48,7 +48,7 @@ Sarah Brown,sarah.brown@example.com`);
     <>
       <fieldset className="options">
         <legend>Options</legend>
-        <label htmlFor="hasHeaderRow">
+        <label htmlFor="hasHeaderRow" className="checkbox-field">
           <input
             type="checkbox"
             id="hasHeaderRow"
@@ -66,6 +66,7 @@ Sarah Brown,sarah.brown@example.com`);
             className="textarea"
             value={csv}
             rows={15}
+            spellCheck={false}
             onChange={(e) => setCsv(e.target.value)}
             onFocus={(e) => e.target.select()}
           ></textarea>
@@ -89,6 +90,7 @@ Sarah Brown,sarah.brown@example.com`);
             className="textarea"
             value={json}
             rows={15}
+            spellCheck={false}
             onChange={(e) => setJson(e.target.value)}
             onFocus={(e) => e.target.select()}
           ></textarea>

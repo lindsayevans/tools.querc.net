@@ -109,6 +109,8 @@ a:active {
   }
 }
 
+// _forms.scss
+
 fieldset {
   padding: 1.5rem 1rem 1rem;
   border: 1px solid #999;
@@ -124,5 +126,62 @@ fieldset {
     border-radius: 4px 0 4px 0;
     background-color: #999;
     color: #e3e3e3;
+  }
+}
+
+textarea {
+  padding: 1rem;
+  border: 1px solid #666;
+  border-radius: 4px;
+
+  &:focus-visible {
+    outline: 2px solid yellowgreen;
+    outline-offset: 1px;
+  }
+}
+
+.checkbox-field {
+  display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.5em;
+  line-height: 1.1;
+
+  input[type='checkbox'] {
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 1px solid #333;
+    border-radius: 4px;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid yellowgreen;
+      outline-offset: 1px;
+    }
+
+    &::before {
+      content: '';
+      width: 0.65em;
+      height: 0.65em;
+      transform: scale(0);
+      transition: 120ms transform ease-in-out;
+      box-shadow: inset 1em 1em green;
+      transform-origin: 50%;
+      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    }
+
+    &:checked::before {
+      transform: scale(1);
+    }
   }
 }

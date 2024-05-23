@@ -134,6 +134,7 @@ export const Base64 = () => {
                 className="textarea"
                 value={plaintext}
                 rows={15}
+                spellCheck={false}
                 onChange={(e) => setPlaintext(e.target.value)}
                 onFocus={(e) => e.target.select()}
               ></textarea>
@@ -176,7 +177,7 @@ export const Base64 = () => {
                   </a>
                 </p>
               )}
-              <label htmlFor="includeDataUri" className="show">
+              <label htmlFor="includeDataUri" className="checkbox-field show">
                 <input
                   type="checkbox"
                   id="includeDataUri"
@@ -208,6 +209,7 @@ export const Base64 = () => {
             className="textarea"
             value={encoded}
             rows={15}
+            spellCheck={false}
             onChange={(e) => setEncoded(e.target.value)}
             onFocus={(e) => e.target.select()}
           ></textarea>
