@@ -52,34 +52,6 @@
         display: block;
       }
     }
-
-    .dropzone {
-      position: relative;
-      margin-bottom: 2rem;
-      border: 2px dashed #333;
-      border-radius: 1rem;
-
-      label {
-        display: block;
-        padding: 1rem;
-        text-align: center;
-      }
-
-      input[type='file'] {
-        position: absolute;
-        inset: 0;
-        opacity: 0;
-      }
-
-      &.has-file {
-        border-color: green;
-      }
-
-      .file-name {
-        margin-top: 0;
-        text-align: center;
-      }
-    }
   }
 
   .field-group {

@@ -185,3 +185,36 @@ textarea {
     }
   }
 }
+
+.dropzone {
+  position: relative;
+  margin-bottom: 2rem;
+  border: 1px dashed #333;
+  border-radius: 1rem;
+
+  &:has(input[type='file']:focus-visible) {
+    outline: 2px solid yellowgreen;
+    outline-offset: 1px;
+  }
+
+  label {
+    display: block;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  input[type='file'] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+  }
+
+  &.has-file {
+    border-color: green;
+  }
+
+  .file-name {
+    margin-top: 0;
+    text-align: center;
+  }
+}
