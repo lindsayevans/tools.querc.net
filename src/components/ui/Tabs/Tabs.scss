@@ -17,11 +17,26 @@
     .tab-button {
       a {
         display: block;
-        padding: 0.5rem 1rem;
+        padding: 0.25rem 1rem;
+        text-decoration: none;
+        color: #333;
+        background-color: rgba(#fff, 0.3);
+        border-bottom: 2px solid #ccc;
+        transition: all 0.15s ease-in-out;
+
+        &:hover {
+          background-color: #ccc;
+          border-color: rgba(green, 0.3);
+        }
+        &:focus-visible {
+          outline: none;
+          border-color: yellowgreen;
+        }
       }
 
-      &--active {
-        background-color: #fff;
+      &--active a {
+        background-color: #fff !important;
+        border-color: green;
       }
     }
   }
