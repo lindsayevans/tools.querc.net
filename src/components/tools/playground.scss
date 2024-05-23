@@ -78,6 +78,23 @@
     }
   }
 
+  .add,
+  .remove {
+    svg {
+      transition: all 0.15s ease-in-out;
+    }
+
+    &:focus-visible {
+      outline: none;
+      opacity: 1 !important;
+
+      svg {
+        transform: scale(1.2);
+        color: green;
+      }
+    }
+  }
+
   input,
   [type='search'] {
     min-width: auto;
@@ -113,8 +130,8 @@
 
   input,
   select {
-    &:focus {
-      outline: 1px dotted #111 !important;
+    &:focus-visible {
+      outline: 2px solid yellowgreen !important;
       outline-offset: 1px !important;
     }
   }
