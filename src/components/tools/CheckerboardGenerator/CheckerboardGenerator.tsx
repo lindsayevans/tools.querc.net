@@ -16,6 +16,7 @@ import {
   FiletypePng,
   FiletypeSvg,
 } from 'react-bootstrap-icons';
+import { ColourPicker } from '../../ui/ColourPicker';
 
 const baseClass = 'checkerboard-generator';
 
@@ -26,7 +27,8 @@ export type CheckerboardParameters = {
 };
 
 const defaultParameters: CheckerboardParameters = {
-  background: '#ccc',
+  //   background: '#ccc',
+  background: '#ff0000cc',
   foreground: 'rebeccapurple',
   size: 10,
 };
@@ -158,37 +160,23 @@ export const CheckerboardGenerator = () => {
       >
         <div className="input-group">
           <label htmlFor="background">Background</label>
-          <input
-            type="text"
+          <ColourPicker
             name="background"
             id="background"
             value={parameters.background}
-            onChange={(e) =>
-              setParameters({ ...parameters, background: e.target.value })
-            }
-            onInput={(e) =>
-              setParameters({
-                ...parameters,
-                background: (e.target as HTMLInputElement).value,
-              })
+            onChange={(colour) =>
+              setParameters({ ...parameters, background: colour })
             }
           />
         </div>
         <div className="input-group">
           <label htmlFor="foreground">Foreground</label>
-          <input
-            type="text"
+          <ColourPicker
             name="foreground"
             id="foreground"
             value={parameters.foreground}
-            onChange={(e) =>
-              setParameters({ ...parameters, foreground: e.target.value })
-            }
-            onInput={(e) =>
-              setParameters({
-                ...parameters,
-                foreground: (e.target as HTMLInputElement).value,
-              })
+            onChange={(colour) =>
+              setParameters({ ...parameters, foreground: colour })
             }
           />
         </div>

@@ -1,0 +1,40 @@
+.colour-picker {
+  display: flex;
+  align-items: stretch;
+  position: relative;
+
+  input,
+  &__input {
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.25rem;
+    background-color: #fff;
+    border: 1px solid #666;
+    border-radius: 0 4px 4px 0;
+    font-size: inherit;
+  }
+
+  &__picker {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    z-index: 1;
+
+    @media (min-width: 1024px) {
+      top: -0.5rem;
+      left: calc(100% + 1.5rem);
+    }
+
+    &--open {
+      display: block;
+    }
+  }
+}
