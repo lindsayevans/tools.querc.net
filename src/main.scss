@@ -248,4 +248,24 @@ textarea {
     margin-top: 0;
     text-align: center;
   }
+
+  .remove {
+    position: absolute;
+    display: flex;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    border: none;
+    background: none;
+    top: 1px;
+    right: 1px;
+    padding: 0;
+    color: indianred;
+    border-radius: 0 1rem 0 4px;
+
+    &:focus-visible {
+      outline: 2px solid yellowgreen;
+      outline-offset: 1px;
+    }
+  }
 }

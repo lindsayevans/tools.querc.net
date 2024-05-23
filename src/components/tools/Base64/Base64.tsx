@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { ArrowLeftShort, ArrowRightShort } from 'react-bootstrap-icons';
+import { ArrowLeftShort, ArrowRightShort, X } from 'react-bootstrap-icons';
 
 import './Base64.scss';
 import { classList } from '../../classList';
@@ -62,7 +62,15 @@ export const Base64 = () => {
           ? `data:${getMediaType(file.item(0))};base64,`
           : '';
         try {
-          setEncoded(prefix + btoa(String.fromCharCode(...new Uint8Array(x))));
+          // Fails with 'Maximum call stack size exceeded'
+          // setEncoded(prefix + btoa(String.fromCharCode(...new Uint8Array(x))));
+
+          const uint8Array = new Uint8Array(x);
+          const data = uint8Array.reduce(
+            (a, i) => (a += String.fromCharCode.apply(null, [i])),
+            ''
+          );
+          setEncoded(prefix + btoa(data));
         } catch (e) {
           alert(
             e.message && e.message.includes('stack size')
@@ -106,7 +114,15 @@ export const Base64 = () => {
             <div className="field-group">
               <div className={classList(['dropzone', file ? 'has-file' : ''])}>
                 <label htmlFor="file" className="show">
-                  Drag file here or click to select
+                  {(!file || !file.item(0)) && (
+                    <>Drag file here or click to select</>
+                  )}
+                  {file && file.item(0) && (
+                    <span className="file-name">
+                      <b>{file.item(0)?.name}</b> (
+                      {getFileSize(file.item(0)?.size)})
+                    </span>
+                  )}
                   <input
                     type="file"
                     className="file-input"
@@ -114,10 +130,13 @@ export const Base64 = () => {
                   />
                 </label>
                 {file && file.item(0) && (
-                  <p className="file-name">
-                    <b>{file.item(0)?.name}</b> (
-                    {getFileSize(file.item(0)?.size)})
-                  </p>
+                  <button
+                    type="button"
+                    className="remove"
+                    onClick={() => setFile(undefined)}
+                  >
+                    <X />
+                  </button>
                 )}
               </div>
               {download && (
