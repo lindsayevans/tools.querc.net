@@ -41,7 +41,7 @@ export const CheckerboardGenerator = () => {
 
   const [parameters, setParameters] =
     useState<CheckerboardParameters>(defaultParameters);
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState({ css: false, svg: false, png: false });
 
   useEffect(() => {
     const params: Partial<CheckerboardParameters> = {};
@@ -122,12 +122,35 @@ export const CheckerboardGenerator = () => {
     });
   };
 
+  const getPngBlob = async (): Promise<Blob> => {
+    return new Promise((resolve) => {
+      const svg = getSvg();
+      const img = new Image();
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = parameters.size * 2;
+      canvas.height = parameters.size * 2;
+
+      if (ctx) {
+        img.onload = () => {
+          ctx.drawImage(img, 0, 0);
+          canvas.toBlob((x) => {
+            if (x) {
+              resolve(x);
+            }
+          }, 'image/png');
+        };
+        img.src = `data:image/svg+xml;base64,${btoa(svg)}`;
+      }
+    });
+  };
+
   const copyCss = () => {
     const code = getCss();
     navigator.clipboard.writeText(code);
-    setCopied(true);
+    setCopied({ ...copied, css: true });
     setTimeout(() => {
-      setCopied(false);
+      setCopied({ ...copied, css: false });
     }, 3000);
   };
 
@@ -140,9 +163,22 @@ export const CheckerboardGenerator = () => {
     // await navigator.clipboard.write(data);
     navigator.clipboard.writeText(svg);
 
-    setCopied(true);
+    setCopied({ ...copied, svg: true });
     setTimeout(() => {
-      setCopied(false);
+      setCopied({ ...copied, svg: false });
+    }, 3000);
+  };
+
+  const copyPng = async () => {
+    const png = await getPngBlob();
+    const type = 'image/png';
+    const blob = new Blob([png], { type });
+    const data = [new ClipboardItem({ [type]: blob })];
+    await navigator.clipboard.write(data);
+
+    setCopied({ ...copied, png: true });
+    setTimeout(() => {
+      setCopied({ ...copied, png: false });
     }, 3000);
   };
 
@@ -243,7 +279,7 @@ export const CheckerboardGenerator = () => {
               onClick={() => {
                 copyCss();
               }}
-              icon={copied ? <ClipboardCheck /> : <Clipboard />}
+              icon={copied.css ? <ClipboardCheck /> : <Clipboard />}
             >
               Copy CSS
             </Button>
@@ -253,9 +289,19 @@ export const CheckerboardGenerator = () => {
               onClick={() => {
                 copySvg();
               }}
-              icon={copied ? <ClipboardCheck /> : <Clipboard />}
+              icon={copied.svg ? <ClipboardCheck /> : <Clipboard />}
             >
               Copy SVG
+            </Button>
+          </li>
+          <li>
+            <Button
+              onClick={() => {
+                copyPng();
+              }}
+              icon={copied.png ? <ClipboardCheck /> : <Clipboard />}
+            >
+              Copy PNG
             </Button>
           </li>
           <li>
