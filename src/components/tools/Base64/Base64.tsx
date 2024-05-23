@@ -84,20 +84,10 @@ export const Base64 = () => {
     }
   };
 
-  const location = useLocation();
-  useEffect(() => {
-    if (location.hash && location.hash.includes('-tab')) {
-      const tab = location.hash.replace('#', '').replace('-tab', '') as Tab;
-      if (tab !== currentTab) {
-        setCurrentTab(tab);
-      }
-    }
-  }, [location]);
-
   return (
     <>
       <div className="converters">
-        <Tabs>
+        <Tabs onChange={(tab) => setCurrentTab(tab as Tab)}>
           <Tab title="Plaintext">
             <div className="field-group">
               <label htmlFor="plaintext">Plaintext</label>
@@ -151,7 +141,7 @@ export const Base64 = () => {
                   checked={includeDataUrl}
                   onChange={(e) => setIncludeDataUrl(e.target.checked)}
                 />{' '}
-                Include data URL
+                Include data URL {includeDataUrl}
               </label>
             </div>
           </Tab>
