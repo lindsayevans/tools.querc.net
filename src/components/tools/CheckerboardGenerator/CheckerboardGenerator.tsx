@@ -17,6 +17,7 @@ import {
   FiletypeSvg,
 } from 'react-bootstrap-icons';
 import { ColourPicker } from '../../ui/ColourPicker';
+import { NAMED_COLOURS } from '../../ui/ColourPicker/NAMED_COLOURS';
 
 const baseClass = 'checkerboard-generator';
 
@@ -70,6 +71,18 @@ export const CheckerboardGenerator = () => {
     }px`;
   };
 
+  const getNamedColour = (colour: string) => {
+    const names = NAMED_COLOURS.map((x) => x.name);
+    if (colour && names.includes(colour)) {
+      const named = NAMED_COLOURS.find((x) => x.name === colour);
+      if (named) {
+        colour = named.hex;
+      }
+    }
+
+    return colour;
+  };
+
   const getSvg = () => {
     return `<svg width="${parameters.size * 2}" height="${
       parameters.size * 2
@@ -78,13 +91,13 @@ export const CheckerboardGenerator = () => {
     }" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect width="${parameters.size * 2}" height="${
       parameters.size * 2
-    }" fill="${parameters.background}"/>
+    }" fill="${getNamedColour(parameters.background)}"/>
     <rect x="${parameters.size}" y="0" width="${parameters.size}" height="${
       parameters.size
-    }" fill="${parameters.foreground}"/>
+    }" fill="${getNamedColour(parameters.foreground)}"/>
     <rect x="0" y="${parameters.size}" width="${parameters.size}" height="${
       parameters.size
-    }" fill="${parameters.foreground}"/>
+    }" fill="${getNamedColour(parameters.foreground)}"/>
     </svg>
     `;
   };
@@ -111,6 +124,21 @@ export const CheckerboardGenerator = () => {
   const copyCss = () => {
     const code = getCss();
     navigator.clipboard.writeText(code);
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 3000);
+  };
+
+  const copySvg = async () => {
+    const svg = getSvg();
+    // Doesn't seem to work with SVG:
+    // const type = 'image/svg+xml';
+    // const blob = new Blob([svg], { type });
+    // const data = [new ClipboardItem({ [type]: blob })];
+    // await navigator.clipboard.write(data);
+    navigator.clipboard.writeText(svg);
+
     setCopied(true);
     setTimeout(() => {
       setCopied(false);
@@ -217,6 +245,16 @@ export const CheckerboardGenerator = () => {
               icon={copied ? <ClipboardCheck /> : <Clipboard />}
             >
               Copy CSS
+            </Button>
+          </li>
+          <li>
+            <Button
+              onClick={() => {
+                copySvg();
+              }}
+              icon={copied ? <ClipboardCheck /> : <Clipboard />}
+            >
+              Copy SVG
             </Button>
           </li>
           <li>
