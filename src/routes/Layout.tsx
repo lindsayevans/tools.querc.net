@@ -10,6 +10,15 @@ export const Layout = () => {
 
   const navItems = [
     {
+      text: 'Generators',
+      items: [
+        {
+          url: '/checkerboard-generator',
+          text: 'Checkerboard',
+        },
+      ],
+    },
+    {
       text: 'Converters',
       items: [
         {

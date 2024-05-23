@@ -36,6 +36,10 @@ const router = createBrowserRouter([
         path: 'duration-format-playground',
         lazy: () => import('./routes/DurationFormatRoute'),
       },
+      {
+        path: 'checkerboard-generator',
+        lazy: () => import('./routes/CheckerboardGenerator'),
+      },
     ],
   },
 ]);
