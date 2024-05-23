@@ -88,18 +88,19 @@ export const CheckerboardGenerator = () => {
       parameters.size * 2
     }" viewBox="0 0 ${parameters.size * 2} ${
       parameters.size * 2
-    }" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="${parameters.size * 2}" height="${
+    }" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="Checkerboard"><rect id="Background" width="${
       parameters.size * 2
-    }" fill="${getNamedColour(parameters.background)}"/>
-    <rect x="${parameters.size}" y="0" width="${parameters.size}" height="${
+    }" height="${parameters.size * 2}" fill="${getNamedColour(
+      parameters.background
+    )}"/><g id="Foreground"><rect x="${parameters.size}" y="0" width="${
       parameters.size
-    }" fill="${getNamedColour(parameters.foreground)}"/>
-    <rect x="0" y="${parameters.size}" width="${parameters.size}" height="${
+    }" height="${parameters.size}" fill="${getNamedColour(
+      parameters.foreground
+    )}"/><rect x="0" y="${parameters.size}" width="${
       parameters.size
-    }" fill="${getNamedColour(parameters.foreground)}"/>
-    </svg>
-    `;
+    }" height="${parameters.size}" fill="${getNamedColour(
+      parameters.foreground
+    )}"/></g></g></svg>`;
   };
 
   const getPng = async (): Promise<string> => {
