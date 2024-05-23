@@ -108,3 +108,21 @@ a:active {
     color: greenyellow;
   }
 }
+
+fieldset {
+  padding: 1.5rem 1rem 1rem;
+  border: 1px solid #999;
+  border-radius: 4px;
+
+  legend {
+    position: relative;
+    top: 14px;
+    padding: 0.25rem 0.5rem;
+    margin-top: 13px;
+    margin-left: -1rem;
+    border: 1px solid #999;
+    border-radius: 4px 0 4px 0;
+    background-color: #999;
+    color: #e3e3e3;
+  }
+}
