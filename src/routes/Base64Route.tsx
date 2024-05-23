@@ -7,7 +7,9 @@ export const Component = () => {
       <aside className="introduction">
         <p>
           Convert to/from{' '}
-          <a href="https://en.wikipedia.org/wiki/Base64">Base64</a>
+          <a rel="external" href="https://en.wikipedia.org/wiki/Base64">
+            Base64
+          </a>
         </p>
       </aside>
       <Base64 />

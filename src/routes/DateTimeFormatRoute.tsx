@@ -7,7 +7,10 @@ export const Component = () => {
       <aside className="introduction">
         <p>
           Experiment with{' '}
-          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat">
+          <a
+            rel="external"
+            href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat"
+          >
             Intl.DateTimeFormat
           </a>{' '}
           options

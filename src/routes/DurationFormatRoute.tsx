@@ -7,18 +7,27 @@ export const Component = () => {
       <aside className="introduction">
         <p>
           Experiment with{' '}
-          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DurationFormat">
+          <a
+            rel="external"
+            href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DurationFormat"
+          >
             Intl.DurationFormat
           </a>{' '}
           options
         </p>
         <p>
           <strong>Note:</strong> You'll need a{' '}
-          <a href="https://www.npmjs.com/package/@formatjs/intl-durationformat">
+          <a
+            rel="external"
+            href="https://www.npmjs.com/package/@formatjs/intl-durationformat"
+          >
             polyfill
           </a>{' '}
           until{' '}
-          <a href="https://caniuse.com/?search=Intl.DurationFormat">
+          <a
+            rel="external"
+            href="https://caniuse.com/?search=Intl.DurationFormat"
+          >
             browser support improves
           </a>
           .
