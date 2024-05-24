@@ -36,7 +36,7 @@ export const LOREM_IPSUM_VARIANTS = [
     ],
   },
   {
-    name: 'Lorizzle',
+    name: "Fo' Lorizzle my Ipsizzle",
     lines: [
       `Yo, let me holla at ya with this Lorem Ipsum flow, cuz. Lorem ipsum dolor sit amet, consectetur adipiscing elit, fo’ shizzle. Phasellus commodo urna non justo sagittis, aliquet dignissim leo bibendizzle. Nullam suscipit sapien vel risus dapibus, id pharetra magna rhoncizzle. Nam malesuada, nisi id cursus congue, elit metus volutpat elit, eget fringilla nunc nunc eget sapien. Fusce vehicula libero at sem auctor, et ornare tellus hendrerizzle.`,
       `Now, listen up, homie. Quisque cursus, nisl vel fringilla aliquet, ligula turpis facilisis est, nec commodo mi felis a orci. Integer a justo ut sapien fringilla feugiat, ya dig? Maurizzle gravida justo at turpis tempor posuere. Fusce condimentizzle, lacus at scelerisque pharetra, odio ligula venenatis magna, vel facilisis lectus orci eget nunc. Aliquam erat volutpatizzle, bro.`,
