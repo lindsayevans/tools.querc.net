@@ -85,7 +85,7 @@ export const Base64 = () => {
   const convertFrom = () => {
     if (encoded) {
       if (currentTab === 'plaintext') {
-        setPlaintext(atob(encoded));
+        setPlaintext(atob(encoded.replace(/data:([^;]+);base64,/i, '')));
       } else {
         setDownload(encoded);
       }
