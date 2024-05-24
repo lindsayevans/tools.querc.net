@@ -40,6 +40,10 @@ const router = createBrowserRouter([
         path: 'checkerboard-generator',
         lazy: () => import('./routes/CheckerboardGenerator'),
       },
+      {
+        path: 'lorem-ipsum-generator',
+        lazy: () => import('./routes/LoremIpsumGeneratorRoute'),
+      },
     ],
   },
 ]);

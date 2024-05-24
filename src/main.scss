@@ -171,6 +171,16 @@ textarea {
   }
 }
 
+select {
+  border: 1px solid #666;
+  border-radius: 4px;
+
+  &:focus-visible {
+    outline: 2px solid yellowgreen;
+    outline-offset: 1px;
+  }
+}
+
 .checkbox-field {
   display: grid;
   grid-template-columns: 1em auto;

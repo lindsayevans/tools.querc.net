@@ -16,6 +16,10 @@ export const Layout = () => {
           url: '/checkerboard-generator',
           text: 'Checkerboard',
         },
+        {
+          url: '/lorem-ipsum-generator',
+          text: 'Lorem Ipsum',
+        },
       ],
     },
     {
