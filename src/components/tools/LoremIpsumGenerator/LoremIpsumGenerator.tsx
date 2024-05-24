@@ -17,10 +17,12 @@ const baseClass = 'lorem-ipsum-generator';
 
 export type LoremIpsumParameters = {
   variant: (typeof LOREM_IPSUM_VARIANTS)[number];
+  paragraphs: number;
 };
 
 const defaultParameters: LoremIpsumParameters = {
   variant: LOREM_IPSUM_VARIANTS[0],
+  paragraphs: 5,
 };
 
 export const LoremIpsumGenerator = () => {
@@ -33,22 +35,27 @@ export const LoremIpsumGenerator = () => {
   const [copied, setCopied] = useState({ text: false, html: false });
 
   useEffect(() => {
-    if (searchParams.has('variant')) {
-      const variant = searchParams.get('variant');
-      if (variant) {
-        setParameters({
-          ...parameters,
-          variant:
-            LOREM_IPSUM_VARIANTS[
-              parseInt(searchParams.get('variant') as string, 10)
-            ],
-        });
+    const params: Partial<LoremIpsumParameters> = {};
+    Array.from(searchParams.keys()).forEach((key) => {
+      if (key === 'variant') {
+        params[key] =
+          LOREM_IPSUM_VARIANTS[parseInt(searchParams.get(key) as string, 10)];
+      } else if (key === 'paragraphs') {
+        params[key] = parseInt(searchParams.get(key) as string, 10);
+      } else {
+        params[key] = searchParams.get(key);
       }
+    });
+    if (params.variant || params.paragraphs) {
+      setParameters(params as LoremIpsumParameters);
     }
   }, [location]);
 
   const copyText = () => {
-    const code = parameters.variant.lines.map((line) => line).join('\r\n\r\n');
+    const code = parameters.variant.lines
+      .filter((_, i) => i < parameters.paragraphs)
+      .map((line) => line)
+      .join('\r\n\r\n');
     navigator.clipboard.writeText(code);
     setCopied({ ...copied, text: true });
     setTimeout(() => {
@@ -58,6 +65,7 @@ export const LoremIpsumGenerator = () => {
 
   const copyHtml = () => {
     const code = `<p>${parameters.variant.lines
+      .filter((_, i) => i < parameters.paragraphs)
       .map((line) => line)
       .join('</p>\r\n<p>')}</p>`;
     navigator.clipboard.writeText(code);
@@ -100,11 +108,37 @@ export const LoremIpsumGenerator = () => {
             ))}
           </select>
         </div>
+        <div className="input-group">
+          <label htmlFor="paragraphs">Paragraphs</label>
+          <input
+            type="number"
+            min={1}
+            max={7}
+            step={1}
+            name="paragraphs"
+            id="paragraphs"
+            value={parameters.paragraphs}
+            onChange={(e) =>
+              setParameters({
+                ...parameters,
+                paragraphs: parseInt(e.target.value, 10),
+              })
+            }
+            onInput={(e) =>
+              setParameters({
+                ...parameters,
+                paragraphs: parseInt((e.target as HTMLInputElement).value, 10),
+              })
+            }
+          />
+        </div>
       </Form>
       <div className="preview">
-        {parameters.variant.lines.map((line) => (
-          <p>{line}</p>
-        ))}
+        {parameters.variant.lines
+          .filter((_, i) => i < parameters.paragraphs)
+          .map((line) => (
+            <p>{line}</p>
+          ))}
       </div>
       <div className="actions">
         <ul>
