@@ -53,7 +53,7 @@ export const CheckerboardGenerator = () => {
     }
   }, [location]);
 
-  const getStyle = () => {
+  const getStyle = (): React.CSSProperties => {
     return {
       background: `${parameters.background} repeating-conic-gradient(${
         parameters.foreground
@@ -64,11 +64,12 @@ export const CheckerboardGenerator = () => {
   };
 
   const getCss = () => {
-    return `background: ${parameters.background} repeating-conic-gradient(${
-      parameters.foreground
-    } 0% 25%, transparent 25% 50%) 0 0/${parameters.size * 2}px ${
-      parameters.size * 2
-    }px`;
+    const style = getStyle();
+    return Object.keys(style)
+      .map(
+        (x) => `${x.replace(/([A-Z]+)/g, '-$1').toLowerCase()}: ${style[x]};`
+      )
+      .join('\r\n');
   };
 
   const getNamedColour = (colour: string) => {
