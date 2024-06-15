@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { X, LightbulbFill, LightbulbOffFill } from 'react-bootstrap-icons';
+import {
+  X,
+  LightbulbFill,
+  LightbulbOffFill,
+  ClipboardCheck,
+  Clipboard,
+} from 'react-bootstrap-icons';
 import Webcam from 'react-webcam';
 
 import './BarcodeScanner.scss';
@@ -81,7 +87,9 @@ export const BarcodeScanner = () => {
   }, [file]);
 
   const renderValue = (value: string) => {
-    if (value.startsWith('http')) {
+    const linkRegex =
+      /^(http:|https:|mailto:|tel:|sms:|facetime:|facetime-audio:)/i;
+    if (value.match(linkRegex)) {
       return (
         <a href={value} target="_blank">
           {value}
@@ -89,7 +97,29 @@ export const BarcodeScanner = () => {
       );
     }
 
+    if (value.startsWith('geo:')) {
+      const coords = value.split(':')[1];
+      return (
+        <a
+          href={`https://www.google.com/maps?ll=${coords}&q=${coords}&hl=en&t=m&z=12`}
+          target="_blank"
+        >
+          {value}
+        </a>
+      );
+    }
+
     return value;
+  };
+
+  const [copied, setCopied] = useState({ value: false });
+
+  const copyValue = (value: string) => {
+    navigator.clipboard.writeText(value);
+    setCopied({ ...copied, value: true });
+    setTimeout(() => {
+      setCopied({ ...copied, value: false });
+    }, 3000);
   };
 
   const [isScanning, setIsScanning] = useState(false);
@@ -195,9 +225,18 @@ export const BarcodeScanner = () => {
             {scanResults &&
               scanResults.barcodes.map((barcode, i) => (
                 <p key={`barcode-${i}`}>
-                  <b>{barcode.type}</b>
-                  <br />
-                  {renderValue(barcode.value)}
+                  <span>
+                    <b>{barcode.type}: </b>
+                    {renderValue(barcode.value)}
+                  </span>
+                  <Button
+                    onClick={() => {
+                      copyValue(barcode.value);
+                    }}
+                    icon={copied.value ? <ClipboardCheck /> : <Clipboard />}
+                  >
+                    Copy
+                  </Button>
                 </p>
               ))}
             {/* <pre>{JSON.stringify(scanResults, null, 4)}</pre> */}
