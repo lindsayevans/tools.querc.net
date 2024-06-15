@@ -1,0 +1,38 @@
+.scan-btn {
+  width: 100%;
+}
+
+.scanner {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background-color: rgba(#000, 0.6);
+  backdrop-filter: blur(8px);
+
+  .scanner-output {
+    position: absolute;
+    inset: 16px 16px 42px 16px;
+  }
+
+  .actions {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+  }
+
+  .btn {
+    background: none;
+    border: none;
+    color: #fff;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+    }
+  }
+}

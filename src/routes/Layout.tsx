@@ -33,6 +33,10 @@ export const Layout = () => {
           url: 'csv-json-converter',
           text: 'CSV ⇄ JSON converter',
         },
+        {
+          url: 'barcode-scanner',
+          text: 'Barcode scanner',
+        },
       ],
     },
     {

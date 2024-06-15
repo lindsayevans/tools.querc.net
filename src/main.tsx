@@ -25,6 +25,10 @@ const router = createBrowserRouter([
         lazy: () => import('./routes/CsvJsonConverterRoute'),
       },
       {
+        path: 'barcode-scanner',
+        lazy: () => import('./routes/BarcodeScannerRoute'),
+      },
+      {
         path: 'date-time-format-playground',
         lazy: () => import('./routes/DateTimeFormatRoute'),
       },
