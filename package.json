@@ -5,7 +5,8 @@
   "source": "src/index.html",
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "NODE_ENV=production parcel build src/index.html"
+    "build": "NODE_ENV=production parcel build src/index.html",
+    "postbuild": "NODE_ENV=production parcel build src/service-worker.ts"
   },
   "staticFiles": {
     "staticPath": "static",
