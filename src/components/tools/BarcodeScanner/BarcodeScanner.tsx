@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { X } from 'react-bootstrap-icons';
+import { X, LightbulbFill, LightbulbOffFill } from 'react-bootstrap-icons';
 import Webcam from 'react-webcam';
 
 import './BarcodeScanner.scss';
@@ -17,38 +17,9 @@ type ScanResults = {
   }>;
 };
 
-type MediaStreamTrackProcessor = any;
-
 export const BarcodeScanner = () => {
-  const [plaintext, setPlaintext] = useState<string>('Hello world!');
   const [file, setFile] = useState<FileList>();
-  const [download, setDownload] = useState<string>();
-  const [includeDataUrl, setIncludeDataUrl] = useState(false);
-  const [encoded, setEncoded] = useState<string>();
   const [currentTab, setCurrentTab] = useState<Tab>('scan');
-
-  const getFileContent = (file: File | null): Promise<ArrayBuffer> => {
-    return new Promise((resolve, reject) => {
-      if (!file) {
-        reject();
-      } else {
-        const reader = new FileReader();
-        reader.onload = function () {
-          const data = reader.result as ArrayBuffer;
-          resolve(data);
-        };
-        reader.readAsArrayBuffer(file);
-      }
-    });
-  };
-
-  const getMediaType = (file: File | null) => {
-    if (!file) {
-      return '';
-    }
-
-    return file.type;
-  };
 
   const getFileSize = (size?: number) => {
     if (!size) {
@@ -125,7 +96,7 @@ export const BarcodeScanner = () => {
   const webcamRef = React.useRef<Webcam>(null);
 
   const checkScan = (stream: MediaStream) => {
-    console.log(stream);
+    // console.log(stream);
 
     const barcodeDetector = new (window as any).BarcodeDetector();
 
@@ -139,7 +110,7 @@ export const BarcodeScanner = () => {
     });
 
     const transformer = new TransformStream({
-      async transform(videoFrame, controller) {
+      async transform(videoFrame) {
         // console.log(videoFrame);
 
         if (webcamRef.current) {
@@ -178,6 +149,8 @@ export const BarcodeScanner = () => {
       .pipeThrough(transformer)
       .pipeTo(trackGenerator.writable);
   };
+
+  const [torchOn, setTorchOn] = useState(false);
 
   return (
     <>
@@ -268,9 +241,18 @@ export const BarcodeScanner = () => {
             width={window.innerWidth - 32}
             height={window.innerHeight - 32}
             onUserMedia={checkScan}
-            videoConstraints={{}}
+            videoConstraints={
+              {
+                facingMode: 'environment',
+                torch: torchOn,
+              } as MediaTrackConstraints
+            }
           />
           <div className="actions">
+            <Button onClick={() => setTorchOn(!torchOn)} className="torch-btn">
+              {!torchOn && <LightbulbFill />}
+              {torchOn && <LightbulbOffFill />}
+            </Button>
             <Button onClick={() => setIsScanning(false)} className="close-btn">
               <X />
             </Button>
