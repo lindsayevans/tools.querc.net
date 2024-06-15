@@ -47,12 +47,14 @@ export const BarcodeScanner = () => {
   }>();
 
   useEffect(() => {
-    (window as any).BarcodeDetector.getSupportedFormats().then(
-      (supportedFormats) => {
-        setDeviceCapabilities({ supportedFormats });
-      }
-    );
-  }, []);
+    if (supported) {
+      (window as any).BarcodeDetector.getSupportedFormats().then(
+        (supportedFormats) => {
+          setDeviceCapabilities({ supportedFormats });
+        }
+      );
+    }
+  }, [supported]);
 
   useEffect(() => {
     if (file) {
@@ -186,61 +188,80 @@ export const BarcodeScanner = () => {
     <>
       <Tabs onChange={(tab) => setCurrentTab(tab as Tab)}>
         <Tab title="Scan">
-          <div className="scan">
-            <div className="field-group">
-              <div className={classList(['dropzone', file ? 'has-file' : ''])}>
-                <label htmlFor="file" className="show">
-                  {(!file || !file.item(0)) && (
-                    <>Drag file here or click to select</>
-                  )}
-                  {file && file.item(0) && (
-                    <span className="file-name">
-                      <b>{file.item(0)?.name}</b> (
-                      {getFileSize(file.item(0)?.size)})
-                    </span>
-                  )}
-                  <input
-                    type="file"
-                    className="file-input"
-                    onChange={(e) => setFile(e.target.files as FileList)}
-                  />
-                </label>
-                {file && file.item(0) && (
-                  <button
-                    type="button"
-                    className="remove"
-                    onClick={() => setFile(undefined)}
+          {!supported && (
+            <p>
+              <a
+                href="https://caniuse.com/?search=BarcodeDetector"
+                target="_blank"
+              >
+                BarcodeDetector API not supported on this device
+              </a>
+            </p>
+          )}
+          {supported && (
+            <>
+              <div className="scan">
+                <div className="field-group">
+                  <div
+                    className={classList(['dropzone', file ? 'has-file' : ''])}
                   >
-                    <X />
-                  </button>
-                )}
-              </div>
-            </div>
+                    <label htmlFor="file" className="show">
+                      {(!file || !file.item(0)) && (
+                        <>Drag file here or click to select</>
+                      )}
+                      {file && file.item(0) && (
+                        <span className="file-name">
+                          <b>{file.item(0)?.name}</b> (
+                          {getFileSize(file.item(0)?.size)})
+                        </span>
+                      )}
+                      <input
+                        type="file"
+                        className="file-input"
+                        onChange={(e) => setFile(e.target.files as FileList)}
+                      />
+                    </label>
+                    {file && file.item(0) && (
+                      <button
+                        type="button"
+                        className="remove"
+                        onClick={() => setFile(undefined)}
+                      >
+                        <X />
+                      </button>
+                    )}
+                  </div>
+                </div>
 
-            <Button onClick={() => setIsScanning(true)} className="scan-btn">
-              Scan
-            </Button>
-          </div>
-          <div className="results">
-            {scanResults &&
-              scanResults.barcodes.map((barcode, i) => (
-                <p key={`barcode-${i}`}>
-                  <span>
-                    <b>{barcode.type}: </b>
-                    {renderValue(barcode.value)}
-                  </span>
-                  <Button
-                    onClick={() => {
-                      copyValue(barcode.value);
-                    }}
-                    icon={copied.value ? <ClipboardCheck /> : <Clipboard />}
-                  >
-                    Copy
-                  </Button>
-                </p>
-              ))}
-            {/* <pre>{JSON.stringify(scanResults, null, 4)}</pre> */}
-          </div>
+                <Button
+                  onClick={() => setIsScanning(true)}
+                  className="scan-btn"
+                >
+                  Scan
+                </Button>
+              </div>
+              <div className="results">
+                {scanResults &&
+                  scanResults.barcodes.map((barcode, i) => (
+                    <p key={`barcode-${i}`}>
+                      <span>
+                        <b>{barcode.type}: </b>
+                        {renderValue(barcode.value)}
+                      </span>
+                      <Button
+                        onClick={() => {
+                          copyValue(barcode.value);
+                        }}
+                        icon={copied.value ? <ClipboardCheck /> : <Clipboard />}
+                      >
+                        Copy
+                      </Button>
+                    </p>
+                  ))}
+                {/* <pre>{JSON.stringify(scanResults, null, 4)}</pre> */}
+              </div>
+            </>
+          )}
         </Tab>
         <Tab title="Device capabilities">
           {!supported && (
