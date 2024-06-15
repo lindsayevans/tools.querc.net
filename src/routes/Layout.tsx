@@ -5,7 +5,15 @@ import './Layout.scss';
 import { classList } from '../components/classList';
 import { Github, ThreeDotsVertical } from 'react-bootstrap-icons';
 
-export const Layout = () => {
+export const Layout = ({ callback }) => {
+  React.useEffect(() => {
+    callback.onUpdate = () => {
+      if (confirm('New version available. Update?')) {
+        window.location.reload();
+      }
+    };
+  }, []);
+
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navItems = [

@@ -1,15 +1,18 @@
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { Layout } from './routes/Layout';
 import { ErrorPage } from './routes/Error';
 import { Homepage } from './routes/Homepage';
 
+const callback: { onUpdate?: () => void } = {};
+
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    element: <Layout callback={callback} />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -62,4 +65,12 @@ if ($app) {
     <RouterProvider router={router} />
     // </StrictMode>
   );
+
+  serviceWorkerRegistration.register({
+    onUpdate: () => {
+      if (callback.onUpdate) {
+        callback.onUpdate();
+      }
+    },
+  });
 }
