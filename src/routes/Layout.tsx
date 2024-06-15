@@ -36,6 +36,7 @@ export const Layout = () => {
         {
           url: 'barcode-scanner',
           text: 'Barcode scanner',
+          experimental: true,
         },
       ],
     },
@@ -81,7 +82,10 @@ export const Layout = () => {
                 <strong>{group.text}</strong>
                 <ul>
                   {group.items.map((navItem) => (
-                    <li key={navItem.url}>
+                    <li
+                      key={navItem.url}
+                      className={navItem.experimental ? 'experimental' : ''}
+                    >
                       <NavLink
                         to={navItem.url}
                         className={({ isActive, isPending }) =>

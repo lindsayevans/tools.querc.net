@@ -133,6 +133,13 @@ header {
             border-radius: 0 0 0.5rem 0.5rem;
           }
         }
+
+        &.experimental a {
+          background-image: url('data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgcm9sZT0iaW1nIj48cGF0aCBkPSJNOTAuNzIgODIuMzRjNC40IDcgMS4yOSAxMi42Ni03IDEyLjY2SDE2LjI1QzggOTUgNC44OCA4OS4zMSA5LjI4IDgyLjM0bDI5LjQ3LTQ2LjQ2VjEyLjVIMzVBMy43NSAzLjc1IDAgMDEzNSA1aDMwYTMuNzUgMy43NSAwIDAxMCA3LjVoLTMuNzV2MjMuMzh6TTQ1LjA4IDM5Ljg2TDI5LjE0IDY1aDQxLjcyTDU0LjkyIDM5Ljg2bC0xLjE3LTEuODFWMTIuNWgtNy41djI1LjU1eiIgZmlsbD0iY3VycmVudENvbG9yIi8+PC9zdmc+');
+          background-repeat: no-repeat;
+          background-position: right 16px center;
+          background-size: 16px;
+        }
       }
 
       a:link,
