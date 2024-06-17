@@ -1,6 +1,11 @@
 {
   "short_name": "tools.querc.net",
-  "name": "tools.querc.net",
+  "name": "tools.querc.net","shortcuts": [
+    {
+      "name": "Scan code",
+      "url": "/barcode-scanner"
+    }
+  ],
   "icons": [
     {
       "src": "../static/favicon.ico",
