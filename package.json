@@ -5,8 +5,7 @@
   "source": "src/index.html",
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "NODE_ENV=production parcel build src/index.html",
-    "postbuild": "NODE_ENV=production parcel build src/service-worker.ts"
+    "build": "NODE_ENV=production parcel build src/index.html"
   },
   "staticFiles": {
     "staticPath": "static",
@@ -18,6 +17,7 @@
   "devDependencies": {
     "@parcel/optimizer-data-url": "^2.12.0",
     "@parcel/packager-raw-url": "^2.12.0",
+    "@parcel/service-worker": "^2.12.0",
     "@parcel/transformer-inline-string": "^2.12.0",
     "@parcel/transformer-sass": "^2.12.0",
     "@parcel/transformer-webmanifest": "^2.12.0",
@@ -26,7 +26,8 @@
     "@types/react-dom": "^18.3.0",
     "parcel": "^2.12.0",
     "parcel-reporter-static-files-copy": "^1.5.3",
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "typescript": "^5.4.5"
   },
   "dependencies": {
     "@formatjs/intl-durationformat": "^0.2.2",

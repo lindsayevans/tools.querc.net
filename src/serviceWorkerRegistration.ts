@@ -61,7 +61,7 @@ export function register(config?: Config) {
 
 function registerValidSW(swUrl: string, config?: Config) {
   navigator.serviceWorker
-    .register(swUrl)
+    .register(new URL('service-worker.ts', import.meta.url), { type: 'module' })
     .then((registration) => {
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
