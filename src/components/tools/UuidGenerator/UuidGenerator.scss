@@ -1,0 +1,65 @@
+.uuid-generator {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  .input,
+  .preview,
+  .download {
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+
+    .input,
+    .download {
+      width: calc(25% - 2rem);
+    }
+
+    .preview {
+      width: calc(50% - 2rem);
+      flex-grow: 1;
+      max-height: 60vh;
+      overflow: auto;
+      padding: 1rem;
+      font-size: 16px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      white-space: wrap;
+      line-height: 1.4;
+
+      p:first-of-type {
+        margin-top: 0;
+      }
+
+      p:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .actions {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: stretch;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      @media (min-width: 1024px) {
+        flex-direction: column;
+
+        .btn {
+          width: 140px;
+        }
+      }
+    }
+  }
+}

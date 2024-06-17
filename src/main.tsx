@@ -51,6 +51,10 @@ const router = createBrowserRouter([
         path: 'lorem-ipsum-generator',
         lazy: () => import('./routes/LoremIpsumGeneratorRoute'),
       },
+      {
+        path: 'uuid-generator',
+        lazy: () => import('./routes/UuidGeneratorRoute'),
+      },
     ],
   },
 ]);

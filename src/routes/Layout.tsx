@@ -28,6 +28,10 @@ export const Layout = ({ callback }) => {
           url: '/lorem-ipsum-generator',
           text: 'Lorem Ipsum',
         },
+        {
+          url: '/uuid-generator',
+          text: 'UUID',
+        },
       ],
     },
     {
