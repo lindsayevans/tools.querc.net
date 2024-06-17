@@ -55,6 +55,10 @@ const router = createBrowserRouter([
         path: 'uuid-generator',
         lazy: () => import('./routes/UuidGeneratorRoute'),
       },
+      {
+        path: 'navigator-vibrate-playground',
+        lazy: () => import('./routes/NavigatorVibrateRoute'),
+      },
     ],
   },
 ]);

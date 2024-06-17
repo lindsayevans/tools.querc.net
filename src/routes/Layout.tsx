@@ -53,7 +53,7 @@ export const Layout = ({ callback }) => {
       ],
     },
     {
-      text: 'Formatting',
+      text: 'Browser APIs',
       items: [
         {
           url: 'date-time-format-playground',
@@ -66,6 +66,10 @@ export const Layout = ({ callback }) => {
         {
           url: 'duration-format-playground',
           text: 'DurationFormat playground',
+        },
+        {
+          url: 'navigator-vibrate-playground',
+          text: 'navigator.vibrate playground',
         },
       ],
     },
