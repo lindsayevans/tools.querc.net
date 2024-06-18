@@ -13,6 +13,7 @@ import { classList } from '../../classList';
 import { Button } from '../../ui/Button';
 import { Tabs } from '../../ui/Tabs/Tabs';
 import { Tab } from '../../ui/Tabs/Tab';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 type Tab = 'scan' | 'device-capabilities';
 
@@ -183,6 +184,20 @@ export const BarcodeScanner = () => {
   };
 
   const [torchOn, setTorchOn] = useState(false);
+
+  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  useEffect(() => {
+    setIsScanning(searchParams.has('scan'));
+  }, [location]);
+
+  useEffect(() => {
+    if (isScanning) {
+      setSearchParams({ scan: '' });
+    } else {
+      setSearchParams({});
+    }
+  }, [isScanning]);
 
   return (
     <>
