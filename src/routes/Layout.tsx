@@ -125,6 +125,7 @@ export const Layout = ({ callback }) => {
       <main>
         <Outlet />
       </main>
+      <small className="version">v{process.env.npm_package_version}</small>
       <a
         className="github"
         href="https://github.com/lindsayevans/tools.querc.net"

@@ -11,6 +11,11 @@
     "staticPath": "static",
     "watcherGlob": "**"
   },
+  "@parcel/transformer-js": {
+    "inlineEnvironment": [
+      "npm_package_version"
+    ]
+  },
   "keywords": [],
   "author": "Lindsay Evans <linz@linz.id.au>",
   "license": "MIT",

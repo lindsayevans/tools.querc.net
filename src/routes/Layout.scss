@@ -203,6 +203,13 @@ header {
   }
 }
 
+.version {
+  position: fixed;
+  bottom: 8px;
+  left: 8px;
+  opacity: 0.5;
+}
+
 .github {
   display: flex;
   justify-content: center;
