@@ -186,18 +186,10 @@ export const BarcodeScanner = () => {
   const [torchOn, setTorchOn] = useState(false);
 
   const location = useLocation();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   useEffect(() => {
     setIsScanning(searchParams.has('scan'));
   }, [location]);
-
-  useEffect(() => {
-    if (isScanning) {
-      setSearchParams({ scan: '' });
-    } else {
-      setSearchParams({});
-    }
-  }, [isScanning]);
 
   return (
     <>
