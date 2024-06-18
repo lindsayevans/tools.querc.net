@@ -75,7 +75,8 @@ if ($app) {
   );
 
   serviceWorkerRegistration.register({
-    onUpdate: () => {
+    onUpdate: (registration) => {
+      registration.waiting?.postMessage({ type: 'SKIP_WAITING' });
       if (callback.onUpdate) {
         callback.onUpdate();
       }
