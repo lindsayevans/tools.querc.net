@@ -32,6 +32,10 @@ export const Layout = ({ callback }) => {
           url: '/uuid-generator',
           text: 'UUID',
         },
+        {
+          url: '/zalgo-generator',
+          text: 'Z̸͎͐a̴̭̍̄l̷̘̇g̸̻͈̀ö̸̤͍́̿',
+        },
       ],
     },
     {

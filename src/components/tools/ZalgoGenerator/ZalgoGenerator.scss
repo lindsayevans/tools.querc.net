@@ -1,0 +1,80 @@
+.zalgo-generator {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  .input,
+  .preview,
+  .actions {
+    width: 100%;
+  }
+
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+
+    .actions {
+      width: calc(25% - 2rem);
+    }
+
+    .input,
+    .preview {
+      width: calc((75% / 2) - 2rem);
+    }
+
+    .preview,
+    .actions {
+      margin-top: 1.5rem;
+    }
+
+    .preview {
+      flex-grow: 1;
+      max-height: 60vh;
+      overflow: auto;
+      padding: 1rem;
+      font-size: 16px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      white-space: pre;
+      line-height: 1.4;
+
+      p:first-of-type {
+        margin-top: 0;
+      }
+
+      p:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .actions {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: stretch;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      @media (min-width: 1024px) {
+        flex-direction: column;
+
+        .btn {
+          width: 140px;
+        }
+      }
+    }
+  }
+}

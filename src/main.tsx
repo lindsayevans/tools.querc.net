@@ -56,6 +56,10 @@ const router = createBrowserRouter([
         lazy: () => import('./routes/UuidGeneratorRoute'),
       },
       {
+        path: 'zalgo-generator',
+        lazy: () => import('./routes/ZalgoGeneratorRoute'),
+      },
+      {
         path: 'navigator-vibrate-playground',
         lazy: () => import('./routes/NavigatorVibrateRoute'),
       },
