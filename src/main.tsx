@@ -74,12 +74,12 @@ if ($app) {
     // </StrictMode>
   );
 
-  serviceWorkerRegistration.register({
-    onUpdate: (registration) => {
-      registration.waiting?.postMessage({ type: 'SKIP_WAITING' });
-      if (callback.onUpdate) {
-        callback.onUpdate();
-      }
-    },
-  });
+  // serviceWorkerRegistration.register({
+  //   onUpdate: (registration) => {
+  //     registration.waiting?.postMessage({ type: 'SKIP_WAITING' });
+  //     if (callback.onUpdate) {
+  //       callback.onUpdate();
+  //     }
+  //   },
+  // });
 }
